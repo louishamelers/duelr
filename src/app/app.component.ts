@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import {AuthService} from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
   title = 'duelr';
+
+  constructor(public auth: AuthService) {
+  }
 }
