@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "duelr-9306d": {
+      "hosting": {
+        "duelr": [
+          "duelr-9306d"
+        ]
+      }
+    }
+  }
+}
