@@ -4,11 +4,12 @@ import { LoginComponent } from './login/login.component';
 import {SharedModule} from '../../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {USER_ROUTES} from './user.routes';
+import { RegisterComponent } from './register/register.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(USER_ROUTES),
