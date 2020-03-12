@@ -1,0 +1,20 @@
+$navigation-height: 52px;
+
+.main-content {
+  height: 100%;
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+  height: $navigation-height;
+  position: fixed;
+  bottom: 0;
+}
+
+main {
+  height: calc(100% - #{$navigation-height});
+  width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}

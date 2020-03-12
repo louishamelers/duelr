@@ -9,6 +9,9 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserModule} from './modules/user/user.module';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldControl} from '@angular/material/form-field';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import {UserModule} from './modules/user/user.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    UserModule
+    MatInputModule,
+    UserModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

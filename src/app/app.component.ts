@@ -3,7 +3,7 @@ import {AuthService} from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'duelr';
