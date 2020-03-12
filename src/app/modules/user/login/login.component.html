@@ -6,6 +6,15 @@
 <ng-template #guest>
   <h3>Howdy, GUEST</h3>
   <p>Login to get started...</p>
+  <h3>Raised Buttons</h3>
+  <div class="example-button-row">
+    <button mat-raised-button>Basic</button>
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="accent">Accent</button>
+    <button mat-raised-button color="warn">Warn</button>
+    <button mat-raised-button disabled>Disabled</button>
+    <a mat-raised-button routerLink=".">Link</a>
+  </div>
 
   <button (click)="auth.googleSignIn()">
     <i class="fa fa-google"></i> Connect Google
