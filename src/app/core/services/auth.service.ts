@@ -37,6 +37,19 @@ export class AuthService {
     return this.updateUserData(credential.user);
   }
 
+  async emailRegister(email: string, password: string): Promise<boolean> {
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          resolve(res);
+        }, err => reject(err));
+    });
+  }
+
+  async emailLogin() {
+
+  }
+
   async signOut() {
     await this.afAuth.auth.signOut();
     this.router.navigate(['/']);

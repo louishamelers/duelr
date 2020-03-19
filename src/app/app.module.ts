@@ -12,6 +12,7 @@ import {UserModule} from './modules/user/user.module';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldControl} from '@angular/material/form-field';
 import {SharedModule} from './shared/shared.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {SharedModule} from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
