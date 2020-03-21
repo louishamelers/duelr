@@ -40,6 +40,9 @@
         Password is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <mat-error *ngIf="fireError" class="fire-error">
+      {{fireError}}
+    </mat-error>
     <button mat-raised-button color="primary" [disabled]="registerForm.invalid" type="submit">Register</button>
   </form>
 </div>

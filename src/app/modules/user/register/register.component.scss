@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 100%;
 
   >div:not(:first-child),
   >form{
@@ -89,6 +90,11 @@ form {
 
   >mat-form-field {
     width: 100%;
+  }
+
+  .fire-error {
+    margin: 0 0 20px 0;
+    text-align: center;
   }
 
   >button {

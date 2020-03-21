@@ -14,8 +14,6 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  user$: Observable<User>;
-
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -30,6 +28,8 @@ export class AuthService {
       })
     );
   }
+
+  user$: Observable<User>;
 
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();

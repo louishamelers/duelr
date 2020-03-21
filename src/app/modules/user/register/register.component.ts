@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   emailFormControl = new FormControl('', [
     Validators.required,
-    Validators.email,
+    Validators.email
   ]);
 
   passwordControl = new FormControl('', [
@@ -36,11 +36,16 @@ export class RegisterComponent implements OnInit {
   });
 
   matcher = new MyErrorStateMatcher();
+  fireError = 'The email address is already in use by another account';
 
   constructor(private router: Router,
               private auth: AuthService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.registerForm.valueChanges.subscribe(next => {
+      this.fireError = '';
+    });
+  }
 
   googleRegister() {
     this.auth.googleSignIn().then(res => {
@@ -57,9 +62,12 @@ export class RegisterComponent implements OnInit {
   emailRegister() {
     const email = this.registerForm.get('email').value;
     const password = this.registerForm.get('password').value;
-    this.auth.emailRegister(password, email).then(res => {
+    this.auth.emailRegister(email, password).then(res => {
       this.afterRegister();
-    });
+    },
+      err => {
+        this.fireError = err.message;
+      });
   }
 
   private afterRegister() {

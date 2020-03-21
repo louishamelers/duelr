@@ -12,7 +12,6 @@
   $background: map-get($theme, background);
 
   // all of these variables contain many additional variables
-
   app-register {
     .wrapper {
       background-color: mat-color($background, background);
