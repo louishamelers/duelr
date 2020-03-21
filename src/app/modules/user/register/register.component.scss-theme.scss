@@ -22,5 +22,13 @@
     h1, h2 {
       color: mat-color($primary, default);
     }
+
+    .login-ref {
+      color: mat-color($foreground, hint-text);
+    }
+
+    mat-icon {
+      color: mat-color($foreground, hint-text);
+    }
   }
 }

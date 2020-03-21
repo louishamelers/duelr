@@ -31,10 +31,25 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input type="password" matInput [formControl]="passwordControl" [errorStateMatcher]="matcher"
+      <input [type]="hide ? 'password' : 'text'" matInput [formControl]="passwordControl" [errorStateMatcher]="matcher"
              placeholder="ZaanseMay0000naise">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="
+        passwordControl.hasError('numberValid') &&
+        !passwordControl.hasError('required') &&
+        !passwordControl.hasError('minlength') &&
+        !passwordControl.hasError('capitalValid')">
+        A password has at least one number
+      </mat-error>
+      <mat-error *ngIf="
+        passwordControl.hasError('capitalValid') &&
+        !passwordControl.hasError('required') &&
+        !passwordControl.hasError('minlength') &&
+        !passwordControl.hasError('numberValid')">
+        A password has at least one capital letter
+      </mat-error>
       <mat-error *ngIf="passwordControl.hasError('minlength') && !passwordControl.hasError('required')">
-        Min 6 characters please
+        A password has at least 8 characters
       </mat-error>
       <mat-error *ngIf="passwordControl.hasError('required')">
         Password is <strong>required</strong>
@@ -50,4 +65,5 @@
       </div>
     </div>
   </form>
+  <p class="login-ref">Already have an account? <strong [routerLink]="'login'">Login here</strong></p>
 </div>

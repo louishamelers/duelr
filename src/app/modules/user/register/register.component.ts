@@ -27,7 +27,9 @@ export class RegisterComponent implements OnInit {
 
   passwordControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(8)
+    Validators.minLength(8),
+    this.passwordCapitalValidator,
+    this.passwordNumberValidator
   ]);
 
   registerForm = new FormGroup({
@@ -38,6 +40,27 @@ export class RegisterComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   fireError = '';
   working = false;
+  hide = true;
+
+  passwordCapitalValidator(c: FormControl) {
+    const regExp = new RegExp('.*[A-Z].*');
+
+    return regExp.test(c.value) ? null : {
+      capitalValid: {
+        valid: false
+      }
+    };
+  }
+
+  passwordNumberValidator(c: FormControl) {
+    const regExp = new RegExp('.*[0-9].*');
+
+    return regExp.test(c.value) ? null : {
+      numberValid: {
+        valid: false
+      }
+    };
+  }
 
   constructor(private router: Router,
               private auth: AuthService) { }
