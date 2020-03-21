@@ -32,7 +32,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
       <input [type]="hide ? 'password' : 'text'" matInput [formControl]="passwordControl" [errorStateMatcher]="matcher"
-             placeholder="ZaanseMay0000naise">
+             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="
         passwordControl.hasError('numberValid') &&

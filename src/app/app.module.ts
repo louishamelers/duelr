@@ -13,12 +13,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldControl} from '@angular/material/form-field';
 import {SharedModule} from './shared/shared.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {RouterModule} from '@angular/router';
+import {ROUTES} from './app.routes';
+import {HomeModule} from './modules/home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    RouterModule.forRoot(ROUTES),
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
@@ -28,7 +33,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     BrowserAnimationsModule,
     MatInputModule,
     UserModule,
+    HomeModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

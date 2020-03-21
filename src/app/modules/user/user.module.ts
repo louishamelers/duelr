@@ -17,10 +17,7 @@ import { RequiredComponent } from './required/required.component';
     imports: [
         CommonModule,
         RouterModule.forChild(USER_ROUTES),
-        SharedModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatInputModule
+        SharedModule
     ]
 })
 export class UserModule { }
