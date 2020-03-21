@@ -8,20 +8,19 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import { RequiredComponent } from './required/required.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, RequiredComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(USER_ROUTES),
         SharedModule,
         MatFormFieldModule,
         MatSelectModule,
-        MatInputModule,
-        FormsModule
+        MatInputModule
     ]
 })
 export class UserModule { }

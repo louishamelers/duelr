@@ -37,6 +37,12 @@ export class AuthService {
     return this.updateUserData(credential.user);
   }
 
+  async facebookSignIn() {
+    const provider = new auth.FacebookAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
+  }
+
   async emailRegister(email: string, password: string): Promise<boolean> {
     return new Promise<any>((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(email, password)

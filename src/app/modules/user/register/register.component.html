@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="header-logo">
+    <img src="assets/images/duelr-icon.svg"  alt="Logo">
+    <h1>Duelr</h1>
+  </div>
+  <div class="sign-up-buttons-container">
+    <button mat-raised-button class="google-button" (click)="googleRegister()">
+      <img src="assets/images/third-party/google.svg" alt="Google">
+      Google
+    </button>
+    <button mat-raised-button class="facebook-button" (click)="facebookRegister()">
+      <img src="assets/images/third-party/facebook.svg" alt="Facebook">
+      Facebook
+    </button>
+  </div>
+  <div>
+    <p>- or -</p>
+  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="emailRegister()">
+    <h2>Create account</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+             placeholder="pat@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Enter a valid email please
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput [formControl]="passwordControl" [errorStateMatcher]="matcher"
+             placeholder="ZaanseMay0000naise">
+      <mat-error *ngIf="passwordControl.hasError('minlength') && !passwordControl.hasError('required')">
+        Min 6 characters please
+      </mat-error>
+      <mat-error *ngIf="passwordControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="registerForm.invalid" type="submit">Register</button>
+  </form>
+</div>

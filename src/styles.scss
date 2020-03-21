@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 // always include only once per project
 @include mat-core();
@@ -10,10 +11,14 @@
 
 // import component themes
 @import "app/shared/components/wrapper/wrapper.component.scss-theme";
+@import "app/modules/user/login/login.component.scss-theme";
+@import "app/modules/user/register/register.component.scss-theme";
 
 // add component mixins here
 @mixin custom-components-theme($theme) {
-  @include wrapper-component-theme($theme)
+  @include wrapper-component-theme($theme);
+  @include login-component-theme($theme);
+  @include register-component-theme($theme);
 }
 
 // specify theme class eg: <body class="my-theme"> ... </body>
@@ -27,4 +32,4 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Raleway', "Helvetica Neue", sans-serif; }

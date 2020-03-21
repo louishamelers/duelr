@@ -1,0 +1,21 @@
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  >div>div {
+    float: left;
+    border: solid red 4px;
+
+    img {
+
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  h1 {
+    border: solid 5px;
+    float: left;
+  }
+}
