@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
   });
 
   matcher = new MyErrorStateMatcher();
-  fireError = 'The email address is already in use by another account';
+  fireError = '';
+  working = false;
 
   constructor(private router: Router,
               private auth: AuthService) { }
@@ -60,12 +61,15 @@ export class RegisterComponent implements OnInit {
   }
 
   emailRegister() {
+    this.working = true;
     const email = this.registerForm.get('email').value;
     const password = this.registerForm.get('password').value;
     this.auth.emailRegister(email, password).then(res => {
+      this.working = false;
       this.afterRegister();
     },
       err => {
+        this.working = false;
         this.fireError = err.message;
       });
   }

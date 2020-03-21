@@ -43,6 +43,11 @@
     <mat-error *ngIf="fireError" class="fire-error">
       {{fireError}}
     </mat-error>
-    <button mat-raised-button color="primary" [disabled]="registerForm.invalid" type="submit">Register</button>
+    <div class="submit-button-container">
+      <button mat-raised-button color="primary" [disabled]="registerForm.invalid || working" type="submit">Register</button>
+      <div *ngIf="working">
+        <mat-progress-spinner mode="indeterminate" color="primary" [diameter]="24"></mat-progress-spinner>
+      </div>
+    </div>
   </form>
 </div>

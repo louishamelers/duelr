@@ -5,22 +5,22 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
 @NgModule({
   declarations: [NotFoundComponent, WrapperComponent],
   imports: [
-    CommonModule,
-    MatButtonModule,
-    MatButtonModule
+    CommonModule
   ],
   exports: [
     MatButtonModule,
     WrapperComponent,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }

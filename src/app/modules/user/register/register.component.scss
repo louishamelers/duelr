@@ -3,6 +3,7 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
+  overflow-x: hidden;
 
   >div:not(:first-child),
   >form{
@@ -96,10 +97,23 @@ form {
     margin: 0 0 20px 0;
     text-align: center;
   }
+}
+
+.submit-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
+  margin: 10px 0 40px 0;
+  position: relative;
+
+  >div {
+    position: absolute;
+    margin: 0 0 0 20px;
+  }
 
   >button {
     height: 48px;
-    width: 60%;
-    margin: 10px 0 40px 0;
+    width: 100%;
   }
 }
