@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private afterRegister() {
-    this.router.navigate([userRoutesNames.REQUIRED]);
+    this.router.navigate([userRoutesNames.ROOT, userRoutesNames.REQUIRED]);
   }
 
 }

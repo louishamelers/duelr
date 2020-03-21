@@ -4,7 +4,7 @@ import {LoginComponent} from './modules/user/login/login.component';
 import {ROUTES} from './app.routes';
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES)],
+  imports: [RouterModule.forRoot(ROUTES, {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
