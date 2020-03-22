@@ -84,7 +84,6 @@ export class ChatService {
           joinKeys[(user as User).uid] = user;
         });
         chat.messages = chat.messages.map(message => {
-          console.log({ ...message, user: joinKeys[message.uid] });
           return { ...message, user: joinKeys[message.uid] };
         });
 
