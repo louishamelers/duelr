@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
     const email = this.registerForm.get('email').value;
     const password = this.registerForm.get('password').value;
     this.auth.emailRegister(email, password).then(res => {
-      this.working = false;
+      console.log(res);
       this.afterRegister();
     },
       err => {
@@ -98,7 +98,8 @@ export class RegisterComponent implements OnInit {
   }
 
   private afterRegister() {
-    this.router.navigate([userRoutesNames.ROOT, userRoutesNames.REQUIRED]);
+    this.working = false;
+    this.router.navigate([userRoutesNames.ROOT, userRoutesNames.FIRSTUSE]);
   }
 
 }

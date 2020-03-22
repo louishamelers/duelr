@@ -3,5 +3,5 @@ export const userRoutesNames = {
   LOGIN: 'login',
   REGISTER: 'register',
   ACCOUNT: 'account',
-  REQUIRED: 'required'
+  FIRSTUSE: 'first-use'
 };

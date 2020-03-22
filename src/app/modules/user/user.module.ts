@@ -8,12 +8,12 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
-import { RequiredComponent } from './required/required.component';
+import { FirstUseComponent } from './first-use/first-use.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, RequiredComponent],
+  declarations: [LoginComponent, RegisterComponent, FirstUseComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(USER_ROUTES),

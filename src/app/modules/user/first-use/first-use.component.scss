@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+
+  >div:not(:first-child),
+  >form{
+    margin: 20px 0 20px 0;
+
+    >p {
+      margin: 0;
+    }
+  }
+}
+
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 40px 0 40px 0;
+
+  >img {
+    width: 46px;
+    height: 46px;
+  }
+
+  >h1 {
+    font-size: 34pt;
+  }
+
+  >* {
+    margin: 0 10px 0 10px;
+  }
+}
+
+.availability-helper {
+
+  p {
+    margin: 0;
+  }
+
+  p:first-child {
+    color: red;
+  }
+
+  p:last-child {
+    color: green;
+  }
+}

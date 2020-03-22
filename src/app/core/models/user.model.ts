@@ -1,5 +1,5 @@
 export interface User {
-  uid: string;
-  email: string;
-  playerName: string;
+  uid?: string;
+  email?: string;
+  playerName?: string;
 }

@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -27,33 +28,36 @@ export class AuthService {
         }
       })
     );
+    this.user$.subscribe(next => this.user = next);
   }
 
   user$: Observable<User>;
+  user: User;
 
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+    return this.updateUserData(credential.user.uid, {email: credential.user.email});
   }
 
   async facebookSignIn() {
     const provider = new auth.FacebookAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+    return this.updateUserData(credential.user.uid, {email: credential.user.email});
   }
 
-  async emailRegister(email: string, password: string): Promise<boolean> {
+  async emailRegister(email: string, password: string): Promise<any> {
+    const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+    return this.updateUserData(credential.user.uid, {email: credential.user.email});
+  }
+
+  async emailLogin(email: string, password: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(res => {
           resolve(res);
         }, err => reject(err));
     });
-  }
-
-  async emailLogin() {
-
   }
 
   async signOut() {
@@ -61,14 +65,25 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  private updateUserData(user) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-    const data = {
-      uid: user.uid,
-      email: user.email,
-      playerName: user.playerName
-    };
+  // playerName management
 
-    return userRef.set(data, {merge: true});
+  checkPlayerName(playerName: string): AngularFirestoreDocument {
+    playerName = playerName.toLowerCase();
+    return this.afs.doc(`playernames/${playerName}`);
+  }
+
+  async setPlayerName(playerName: string): Promise<any> {
+    if (this.user.playerName !== undefined) {
+      await this.afs.doc(`/playernames/${this.user.playerName}`).delete();
+    }
+    await this.afs.doc(`/playernames/${playerName}`).set({uid: this.user.uid});
+    return this.updateUserData(this.user.uid, {playerName});
+  }
+
+  // user info management
+  private updateUserData(uid: string, newUserData?: User): Promise<any> {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+    newUserData.uid = uid;
+    return userRef.set(newUserData, {merge: true});
   }
 }

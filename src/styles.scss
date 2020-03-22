@@ -13,12 +13,14 @@
 @import "app/shared/components/wrapper/wrapper.component.scss-theme";
 @import "app/modules/user/login/login.component.scss-theme";
 @import "app/modules/user/register/register.component.scss-theme";
+@import "app/modules/user/first-use/first-use.scss-theme";
 
 // add component mixins here
 @mixin custom-components-theme($theme) {
   @include wrapper-component-theme($theme);
   @include login-component-theme($theme);
   @include register-component-theme($theme);
+  @include first-use-component-theme($theme);
 }
 
 // specify theme class eg: <body class="my-theme"> ... </body>
