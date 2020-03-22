@@ -26,10 +26,14 @@ export class PlaygroupService {
     const userData: User = this.auth.user;
     const playgroupData = await this.getPlaygroup('odGw2W0b6DtnFYoUaqJM');
 
-    if (userData.playgroups.indexOf('odGw2W0b6DtnFYoUaqJM') === -1) {
+    if (userData.playgroups === undefined) {
+      userData.playgroups = ['odGw2W0b6DtnFYoUaqJM'];
+    } else if (userData.playgroups.indexOf('odGw2W0b6DtnFYoUaqJM') === -1) {
       userData.playgroups.push('odGw2W0b6DtnFYoUaqJM');
     }
-    if (playgroupData.players.indexOf(uid) === -1) {
+    if (playgroupData.players === undefined) {
+      playgroupData.players = [uid];
+    } else if (playgroupData.players.indexOf(uid) === -1) {
       playgroupData.players.push(uid);
     }
 
