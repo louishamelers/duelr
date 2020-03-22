@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
 import {PlaygroupService} from '../../../core/services/playgroup.service';
+import {socialRoutesNames} from '../../social/social.routes.names';
 
 @Component({
   selector: 'app-first-use',
@@ -35,7 +36,7 @@ export class FirstUseComponent implements OnInit {
   submitData() {
     this.auth.setPlayerName(this.playerName).then(res => {
         this.playgroupService.join(this.auth.user.uid).then(lekker => {
-          // this.router.navigate(['/']);
+          this.router.navigate([socialRoutesNames.ROOT]);
         });
     },
       err => {

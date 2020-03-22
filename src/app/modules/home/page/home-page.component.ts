@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../core/services/auth.service';
 import {PlaygroupService} from '../../../core/services/playgroup.service';
+import {ChatService} from '../../../core/services/chat.service';
 
 @Component({
   selector: 'app-page',
@@ -11,6 +12,7 @@ import {PlaygroupService} from '../../../core/services/playgroup.service';
 export class HomePageComponent implements OnInit {
 
   constructor(private router: Router,
+              private cs: ChatService,
               private auth: AuthService,
               private playgroupService: PlaygroupService) { }
 
@@ -19,5 +21,9 @@ export class HomePageComponent implements OnInit {
 
   go() {
     this.router.navigate(['/user/register']);
+  }
+
+  do() {
+    this.cs.create();
   }
 }

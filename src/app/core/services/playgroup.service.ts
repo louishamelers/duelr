@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {User} from '../models/user.model';
 import {Playgroup} from '../models/playgroup.model';
 import {AuthService} from './auth.service';
+import {first} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,7 @@ export class PlaygroupService {
   ) { }
 
   async getPlaygroup(uid: string): Promise<Playgroup> {
-    return new Promise(resolve => {
-      this.afs.doc<Playgroup>(`playgroups/${uid}`).valueChanges().subscribe(playgroup => {
-        resolve(playgroup);
-      });
-    });
+    return this.afs.doc<Playgroup>(`playgroups/${uid}`).valueChanges().pipe(first()).toPromise();
   }
 
   async join(uid: string) {

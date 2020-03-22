@@ -17,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.routes';
 import {HomeModule} from './modules/home/home.module';
+import {SocialModule} from './modules/social/social.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {HomeModule} from './modules/home/home.module';
     MatInputModule,
     UserModule,
     HomeModule,
+    SocialModule,
     SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
