@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
+import {PlaygroupService} from '../../../core/services/playgroup.service';
 
 @Component({
   selector: 'app-first-use',
@@ -14,6 +15,7 @@ export class FirstUseComponent implements OnInit {
   working = false;
 
   constructor(private auth: AuthService,
+              private playgroupService: PlaygroupService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -32,7 +34,9 @@ export class FirstUseComponent implements OnInit {
 
   submitData() {
     this.auth.setPlayerName(this.playerName).then(res => {
-      this.router.navigate(['/']);
+        this.playgroupService.join(this.auth.user.uid).then(lekker => {
+          // this.router.navigate(['/']);
+        });
     },
       err => {
         console.log(err.message);

@@ -9,6 +9,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import * as firebase from 'firebase';
+import {PlaygroupService} from './playgroup.service';
 
 @Injectable({
   providedIn: 'root'

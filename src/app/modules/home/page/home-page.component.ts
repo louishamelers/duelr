@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../core/services/auth.service';
+import {PlaygroupService} from '../../../core/services/playgroup.service';
 
 @Component({
   selector: 'app-page',
@@ -8,7 +10,9 @@ import {Router} from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private auth: AuthService,
+              private playgroupService: PlaygroupService) { }
 
   ngOnInit(): void {
   }
