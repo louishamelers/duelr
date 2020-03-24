@@ -1,7 +1,11 @@
 .wrapper {
   height: 100%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 
   header {
+    border: solid red 1px;
     position: fixed;
     top: 0;
     height: 50px;
@@ -11,16 +15,29 @@
 
   }
 
-  .chatbox-container {
+  footer {
+    border: solid green 1px;
     position: fixed;
     bottom: 0;
-    height: 50px;
     width: 100%;
-    background-color: green;
 
+    .input-wrapper {
+      border: solid 1px;
+      border-radius: 4px;
+      margin: 10px;
+
+      > input {
+        border: none;
+        width: calc(100% - 44px);
+      }
+
+      > button {
+      }
+    }
   }
 
   .chat-wrapper {
+    border: solid blue 1px;
     position: fixed;
     height: calc(100% - 100px);
     top: 50px;
@@ -52,8 +69,6 @@
       }
     }
   }
-
-
 }
 
 

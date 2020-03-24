@@ -1,0 +1,40 @@
+[debug] [2020-03-24T21:53:42.344Z] ----------------------------------------------------------------------
+[debug] [2020-03-24T21:53:42.348Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\louis\Documents-local\duelr\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-03-24T21:53:42.348Z] CLI Version:   7.14.0
+[debug] [2020-03-24T21:53:42.348Z] Platform:      win32
+[debug] [2020-03-24T21:53:42.348Z] Node Version:  v13.10.1
+[debug] [2020-03-24T21:53:42.349Z] Time:          Tue Mar 24 2020 22:53:42 GMT+0100 (Central European Standard Time)
+[debug] [2020-03-24T21:53:42.349Z] ----------------------------------------------------------------------
+[debug] [2020-03-24T21:53:42.350Z] 
+[debug] [2020-03-24T21:53:42.358Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-24T21:53:42.358Z] > authorizing via signed-in user
+[debug] [2020-03-24T21:53:42.359Z] [iam] checking project duelr-9306d for permissions ["firebase.projects.get"]
+[debug] [2020-03-24T21:53:42.360Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/duelr-9306d:testIamPermissions  
+
+[debug] [2020-03-24T21:53:43.260Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-24T21:53:43.266Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/duelr-9306d  
+ 
+[debug] [2020-03-24T21:53:43.643Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\louis\Documents-local\duelr'...
+[info] 
+[debug] [2020-03-24T21:53:43.657Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/duelr-9306d/webApps/-/config  
+ 
+[debug] [2020-03-24T21:53:44.566Z] <<< HTTP RESPONSE 200
+[info] i  hosting[duelr]: Serving hosting files from: dist/duelr
+[info] +  hosting[duelr]: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "13"
+[info] +  functions: functions emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\louis\Documents-local\duelr\functions" for Cloud Functions...
+[debug] [2020-03-24T21:53:45.743Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-03-24T21:53:45.744Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-03-24T21:53:45.744Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-03-24T21:53:45.745Z] [worker-~diagnostic~-72975365-76ff-4aa0-af63-81a6ac118e9a]: Assigning socketPath: \\?\pipe\C:\Users\louis\Documents-local\duelr\functions\14784
+[debug] [2020-03-24T21:53:45.746Z] [worker-~diagnostic~-72975365-76ff-4aa0-af63-81a6ac118e9a]: BUSY
+[debug] [2020-03-24T21:53:46.325Z] [runtime-status] [14784] Functions runtime initialized. {"cwd":"C:\\Users\\louis\\Documents-local\\duelr\\functions","node_version":"13.10.1"}
+[debug] [2020-03-24T21:53:46.327Z] [runtime-status] [14784] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-24T21:53:46.332Z] [runtime-status] [14784] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.10.0","resolution":"C:\\Users\\louis\\Documents-local\\duelr\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-24T21:53:46.334Z] [runtime-status] [14784] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"C:\\Users\\louis\\Documents-local\\duelr\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-24T21:53:46.336Z] [runtime-status] [14784] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.5.0","resolution":"C:\\Users\\louis\\Documents-local\\duelr\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] i  functions[archiveChat]: function ignored because the firestore emulator does not exist or is not running.
+[debug] [2020-03-24T21:53:46.938Z] [worker-~diagnostic~-72975365-76ff-4aa0-af63-81a6ac118e9a]: IDLE

@@ -30,5 +30,18 @@
     mat-icon {
       color: mat-color($foreground, hint-text);
     }
+
+    footer {
+      background-color: mat-color($background, card);
+
+      .input-wrapper {
+        border-color: mat-color($foreground, hint-text);
+
+        > input {
+          background-color: mat-color($background, card);
+        }
+      }
+
+    }
   }
 }
