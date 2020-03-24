@@ -1,27 +1,23 @@
-lekker
-<ng-container *ngIf="chat$ | async as chat">
-
-  <div class="top">
-    <p>
-      https://firestore-megachat.firebaseapp.com/chats/{{ chat.id }}
-    </p>
-  </div>
-
-
-  <div class="chat">
-    <div class="msg" *ngFor="let msg of chat.messages; trackBy: trackByCreated">
-      <div class="user">
-        <img [src]="msg.user?.photoURL">
-        <div>{{ msg.user?.playerName }}</div>
+<div class="wrapper">
+  <header class="mat-elevation-z3">header info</header>
+  <div class="chat-wrapper" #chatScroll>
+    <div class="chat" *ngIf="chat$ | async as chat">
+      <div class="msg-wrapper" *ngFor="let msg of chat.messages; trackBy: trackByCreated" [class.mine]="msg.uid == auth.user.uid">
+        <mat-card class="msg">
+          <p>{{msg.user?.playerName}}</p>
+          <div class="msg-content">
+            <p>{{ msg.content }}</p>
+          </div>
+        </mat-card>
       </div>
-      <p>{{ msg.content }}</p>
     </div>
   </div>
-
-  <div class="form">
+  <div class="chatbox-container">
     <input [(ngModel)]="newMsg" (keydown.enter)="submit()">
 
     <button (click)="submit()">Send</button>
   </div>
+</div>
 
-</ng-container>
+
+

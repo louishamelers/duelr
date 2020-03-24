@@ -1,0 +1,60 @@
+.wrapper {
+  height: 100%;
+
+  header {
+    position: fixed;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    background-color: red;
+    z-index: 1;
+
+  }
+
+  .chatbox-container {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: green;
+
+  }
+
+  .chat-wrapper {
+    position: fixed;
+    height: calc(100% - 100px);
+    top: 50px;
+    overflow-y: scroll;
+
+    .chat {
+
+      .msg-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        &.mine {
+          flex-direction: row-reverse;
+        }
+
+        .msg {
+          max-width: 75%;
+          min-width: 35%;
+          display: table;
+          padding: 10px 20px 10px 10px;
+          margin: 10px;
+
+          p:first-of-type {
+            font-size: 11pt;
+            margin: 0 0 10px 0;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+
+

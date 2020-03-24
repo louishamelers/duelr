@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ChatService} from '../../../core/services/chat.service';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, timer} from 'rxjs';
 import {first} from 'rxjs/operators';
+import {AuthService} from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
+  @ViewChild('chatScroll') chatScroll: ElementRef;
 
   chatId: string;
   chat$: Observable<any>;
@@ -17,7 +19,8 @@ export class ChatComponent implements OnInit {
 
   constructor(
     public cs: ChatService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -26,8 +29,13 @@ export class ChatComponent implements OnInit {
     this.chat$ = this.cs.joinUsers(source);
   }
 
+  ngAfterViewInit(): void {
+    this.chat$.subscribe(next => {
+      this.scrollToBottom();
+    });
+  }
+
   submit() {
-    this.chat$.subscribe(next => console.log(next));
     if (!this.newMsg) {
       return alert('you need to enter something');
     }
@@ -37,5 +45,9 @@ export class ChatComponent implements OnInit {
 
   trackByCreated(i, msg) {
     return msg.createdAt;
+  }
+
+  private scrollToBottom() {
+    this.chatScroll.nativeElement.scrollTop = this.chatScroll.nativeElement.scrollHeight + 100;
   }
 }

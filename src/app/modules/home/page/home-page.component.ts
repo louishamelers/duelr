@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../../core/services/auth.service';
 import {PlaygroupService} from '../../../core/services/playgroup.service';
 import {ChatService} from '../../../core/services/chat.service';
+import {socialRoutesNames} from '../../social/social.routes.names';
 
 @Component({
   selector: 'app-page',
@@ -24,6 +25,6 @@ export class HomePageComponent implements OnInit {
   }
 
   do() {
-    this.cs.create();
+    this.router.navigate([socialRoutesNames.ROOT, 'IDj6DKinCm1bK73xvnHo']);
   }
 }

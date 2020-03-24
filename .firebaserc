@@ -9,6 +9,7 @@
     }
   },
   "projects": {
-    "angular": "duelr-9306d"
+    "angular": "duelr-9306d",
+    "default": "duelr-9306d"
   }
 }
