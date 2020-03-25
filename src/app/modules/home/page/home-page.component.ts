@@ -27,4 +27,8 @@ export class HomePageComponent implements OnInit {
   do() {
     this.router.navigate([socialRoutesNames.ROOT, 'IDj6DKinCm1bK73xvnHo']);
   }
+
+  tan() {
+    this.cs.create();
+  }
 }

@@ -5,20 +5,12 @@
   flex-direction: column;
 
   header {
-    border: solid red 1px;
-    position: fixed;
-    top: 0;
-    height: 50px;
-    width: 100%;
-    background-color: red;
     z-index: 1;
+    width: 100%;
 
   }
 
   footer {
-    border: solid green 1px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
 
     .input-wrapper {
@@ -28,7 +20,15 @@
 
       > input {
         border: none;
-        width: calc(100% - 44px);
+        width: calc(100% - 54px);
+        line-height: 28pt;
+        font-size: 14pt;
+        padding-left: 10px;
+        color: white;
+      }
+
+      > input:focus {
+        outline: none;
       }
 
       > button {
@@ -37,10 +37,7 @@
   }
 
   .chat-wrapper {
-    border: solid blue 1px;
-    position: fixed;
-    height: calc(100% - 100px);
-    top: 50px;
+    flex-grow: 1;
     overflow-y: scroll;
 
     .chat {
@@ -60,16 +57,32 @@
           display: table;
           padding: 10px 20px 10px 10px;
           margin: 10px;
+          position: relative;
 
-          p:first-of-type {
+          .player-name {
+            font-size: 11pt;
+          }
+
+          .message {
             font-size: 11pt;
             margin: 0 0 10px 0;
+          }
+
+          .date-hint {
+            float: right;
+            opacity: 0.6;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin: 5px;
+            font-size: 9pt;
           }
         }
       }
     }
   }
 }
+
 
 
 

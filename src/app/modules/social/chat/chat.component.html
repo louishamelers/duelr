@@ -8,17 +8,18 @@
     <div class="chat" *ngIf="chat$ | async as chat">
       <div class="msg-wrapper" *ngFor="let msg of chat.messages; trackBy: trackByCreated" [class.mine]="msg.uid == auth.user.uid">
         <mat-card class="msg">
-          <p>{{msg.user?.playerName}}</p>
+          <strong class="noselect player-name" [style]="msg.user?.style">{{msg.user?.playerName}}</strong>
           <div class="msg-content">
-            <p>{{ msg.content }}</p>
+            <p class="message">{{ msg.content }}</p>
           </div>
+          <p class="noselect date-hint">{{msg.createdAt | date: 'shortTime'}}</p>
         </mat-card>
       </div>
     </div>
   </div>
   <footer>
     <div class="input-wrapper">
-      <input [(ngModel)]="newMsg" (keydown.enter)="submit()">
+      <input [(ngModel)]="newMsg" (keydown.enter)="submit()" placeholder="Say something whack...">
       <button (click)="submit()" mat-icon-button aria-label="send">
         <mat-icon>send</mat-icon>
       </button>

@@ -7,6 +7,14 @@ export interface Message {
 export interface Chat {
   id?: string;
   createdAt?: number;
-  count?: number;
+  chatName?: string;
+  memberColors?: {id: string, color: string}[];
   messages?: Message[];
 }
+
+export const emptyChat: Chat = {
+  createdAt: Date.now(),
+  chatName: '',
+  memberColors: [],
+  messages: [],
+};

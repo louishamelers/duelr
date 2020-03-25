@@ -18,6 +18,7 @@ import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.routes';
 import {HomeModule} from './modules/home/home.module';
 import {SocialModule} from './modules/social/social.module';
+import {DevModule} from './modules/dev/dev.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {SocialModule} from './modules/social/social.module';
     HomeModule,
     SocialModule,
     SharedModule,
+    DevModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],

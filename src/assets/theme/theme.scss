@@ -8,3 +8,9 @@ $my-theme: mat-dark-theme(
     $my-theme-accent,
     $my-theme-warn
 );
+
+$my-theme-contrast: mat-light-theme(
+    $my-theme-primary,
+    $my-theme-accent,
+    $my-theme-warn
+);

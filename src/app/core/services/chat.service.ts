@@ -1,14 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { first, map, switchMap, tap} from 'rxjs/operators';
-import { combineLatest } from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
+import {combineLatest, Observable, of} from 'rxjs';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {socialRoutesNames} from '../../modules/social/social.routes.names';
 import {firestore} from 'firebase';
-import {Observable, of} from 'rxjs';
-import {Chat, Message} from '../models/chat.model';
-import {Playgroup} from '../models/playgroup.model';
+import {Chat, emptyChat, Message} from '../models/chat.model';
 import {User} from '../models/user.model';
 
 @Injectable({
@@ -33,12 +31,8 @@ export class ChatService {
   async create() {
     const { uid } = this.auth.user;
 
-    const data: Chat = {
-      id: uid,
-      createdAt: Date.now(),
-      count: 0,
-      messages: []
-    };
+    const data: Chat = emptyChat;
+    data.chatName = 'lekker';
 
     const docRef = await this.afs.collection('chats').add(data);
 
@@ -81,7 +75,8 @@ export class ChatService {
       }),
       map(arr => {
         arr.forEach(user => {
-          joinKeys[(user as User).uid] = user;
+          const uid = (user as User).uid;
+          joinKeys[uid] = {...user, style: this.getStyleForUser(uid)};
         });
         chat.messages = chat.messages.map(message => {
           return { ...message, user: joinKeys[message.uid] };
@@ -90,5 +85,15 @@ export class ChatService {
         return chat;
       })
     );
+  }
+
+  getStyleForUser(uid: string): any {
+    let color: string = localStorage.getItem(`chatColor: ${uid}`);
+    console.log(color);
+    if (color == null) {
+      color = Math.floor(Math.random() * 16777215).toString(16);
+      localStorage.setItem(`chatColor: ${uid}`, color);
+    }
+    return {'color': `#${color}`};
   }
 }

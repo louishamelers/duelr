@@ -23,8 +23,23 @@
       color: mat-color($primary, default);
     }
 
-    .login-ref {
-      color: mat-color($foreground, hint-text);
+    .mat-card {
+      background-color: mat-color($foreground, base);
+      color: mat-color($background, app-bar);
+
+
+      .msg {
+        .player-name {
+
+        }
+
+        .message {
+
+        }
+
+        .date-hint {
+        }
+      }
     }
 
     mat-icon {
@@ -35,7 +50,7 @@
       background-color: mat-color($background, card);
 
       .input-wrapper {
-        border-color: mat-color($foreground, hint-text);
+        border-color: mat-color($foreground, hint-text) !important;
 
         > input {
           background-color: mat-color($background, card);
