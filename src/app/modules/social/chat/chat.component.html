@@ -6,9 +6,13 @@
   </header>
   <div class="chat-wrapper" #chatScroll>
     <div class="chat" *ngIf="chat$ | async as chat">
-      <div class="msg-wrapper" *ngFor="let msg of chat.messages; trackBy: trackByCreated" [class.mine]="msg.uid == auth.user.uid">
-        <mat-card class="msg">
-          <strong class="noselect player-name" [style]="msg.user?.style">{{msg.user?.playerName}}</strong>
+      <div class="msg-wrapper" *ngFor="let msg of chat.messages; trackBy: trackByCreated; let i = index" [class.mine]="msg.uid == auth.user.uid">
+        <mat-card class="msg" [class.new-message]="i == 0 || msg.uid != chat.messages[i -1].uid">
+          <div
+            class="noselect player-name"
+            [style]="msg.user?.style">
+            {{msg.user?.playerName}}
+          </div>
           <div class="msg-content">
             <p class="message">{{ msg.content }}</p>
           </div>
