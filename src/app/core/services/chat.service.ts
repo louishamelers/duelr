@@ -9,6 +9,8 @@ import {firestore} from 'firebase';
 import {Chat, emptyChat, Message} from '../models/chat.model';
 import {User} from '../models/user.model';
 import {config} from '../config';
+import {Playgroup} from '../models/playgroup.model';
+import {group} from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,15 @@ export class ChatService {
     private afs: AngularFirestore,
     private router: Router
   ) { }
+
+  private static getStyleForUser(uid: string): any {
+    let color: string = localStorage.getItem(`chatColor: ${uid}`);
+    if (color == null) {
+      color = Math.floor(Math.random() * 16777215).toString(16);
+      localStorage.setItem(`chatColor: ${uid}`, color);
+    }
+    return {color: `#${color}`};
+  }
 
   get(chatId): Observable<Chat> {
     return this.afs
@@ -57,7 +68,7 @@ export class ChatService {
     }
   }
 
-  joinUsers(chat$: Observable<any>) {
+  joinUsers(chat$: Observable<any>): Observable<any> {
     let chat;
     const joinKeys: {[id: string]: any} = {};
 
@@ -65,7 +76,7 @@ export class ChatService {
       switchMap(c => {
         // Unique User IDs
         chat = c;
-        const uids = Array.from(new Set(c.messages.map(v => v.uid)));
+        const uids = Array.from(new Set(c.messages.map((message: Message) => message.uid)));
 
         // Firestore User Doc Reads
         const userDocs: Observable<User>[] = uids.map(u =>
@@ -77,7 +88,7 @@ export class ChatService {
       map(arr => {
         arr.forEach(user => {
           const uid = (user as User).uid;
-          joinKeys[uid] = {...user, style: this.getStyleForUser(uid)};
+          joinKeys[uid] = {...user, style: ChatService.getStyleForUser(uid)};
         });
         chat.messages = chat.messages.map(message => {
           return { ...message, user: joinKeys[message.uid] };
@@ -88,13 +99,22 @@ export class ChatService {
     );
   }
 
-  getStyleForUser(uid: string): any {
-    let color: string = localStorage.getItem(`chatColor: ${uid}`);
-    console.log(color);
-    if (color == null) {
-      color = Math.floor(Math.random() * 16777215).toString(16);
-      localStorage.setItem(`chatColor: ${uid}`, color);
-    }
-    return {color: `#${color}`};
+  myChats(): Observable<string[]> {
+    return this.auth.user$.pipe(
+      switchMap( user => {
+        const uids = Array.from(new Set(user.playgroups.map((message: string) => message)));
+
+        const playgroupDocs: Observable<Playgroup>[] = uids.map(groupId =>
+          this.afs.doc<Playgroup>(`${config.firebaseRoutes.playGroups}/${groupId}`).valueChanges()
+        );
+
+        return playgroupDocs.length ? combineLatest(playgroupDocs) : of ([]);
+      }),
+      map(playGroups => {
+        const chatIds: string[] = [];
+        playGroups.forEach(playGroup => chatIds.push(playGroup.chat));
+        return chatIds;
+      })
+    );
   }
 }

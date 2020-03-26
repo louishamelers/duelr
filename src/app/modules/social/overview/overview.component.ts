@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ChatService} from '../../../core/services/chat.service';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  chatIds: string[];
+
+  constructor(private cs: ChatService) { }
 
   ngOnInit(): void {
+    this.cs.myChats().subscribe(chatIds => {
+      this.chatIds = chatIds;
+    });
   }
 
 }
