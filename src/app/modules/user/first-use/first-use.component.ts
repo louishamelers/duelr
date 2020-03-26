@@ -35,7 +35,7 @@ export class FirstUseComponent implements OnInit {
 
   submitData() {
     this.auth.setPlayerName(this.playerName).then(res => {
-        this.playgroupService.join(this.auth.user.uid).then(lekker => {
+        this.playgroupService.join(this.auth.user.uid, 'ekfGDq4bJyqq8YyKLHJX').then(lekker => {
           this.router.navigate([socialRoutesNames.ROOT]);
         });
     },

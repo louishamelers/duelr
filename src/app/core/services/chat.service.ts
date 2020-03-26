@@ -8,6 +8,7 @@ import {socialRoutesNames} from '../../modules/social/social.routes.names';
 import {firestore} from 'firebase';
 import {Chat, emptyChat, Message} from '../models/chat.model';
 import {User} from '../models/user.model';
+import {config} from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ChatService {
 
   get(chatId): Observable<Chat> {
     return this.afs
-      .collection('chats')
+      .collection(config.firebaseRoutes.chats)
       .doc<Chat>(chatId)
       .valueChanges();
   }
@@ -34,7 +35,7 @@ export class ChatService {
     const data: Chat = emptyChat;
     data.chatName = 'lekker';
 
-    const docRef = await this.afs.collection('chats').add(data);
+    const docRef = await this.afs.collection(config.firebaseRoutes.chats).add(data);
 
     return this.router.navigate([socialRoutesNames.ROOT, docRef.id]);
   }
@@ -49,7 +50,7 @@ export class ChatService {
     };
 
     if (uid) {
-      const ref = this.afs.collection('chats').doc(chatId);
+      const ref = this.afs.collection(config.firebaseRoutes.chats).doc(chatId);
       return ref.update({
         messages: firestore.FieldValue.arrayUnion(message)
       });
@@ -68,7 +69,7 @@ export class ChatService {
 
         // Firestore User Doc Reads
         const userDocs: Observable<User>[] = uids.map(u =>
-          this.afs.doc<User>(`users/${u}`).valueChanges()
+          this.afs.doc<User>(`${config.firebaseRoutes.players}/${u}`).valueChanges()
         );
 
         return userDocs.length ? combineLatest(userDocs) : of([]);
@@ -94,6 +95,6 @@ export class ChatService {
       color = Math.floor(Math.random() * 16777215).toString(16);
       localStorage.setItem(`chatColor: ${uid}`, color);
     }
-    return {'color': `#${color}`};
+    return {color: `#${color}`};
   }
 }

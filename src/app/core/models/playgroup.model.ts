@@ -3,3 +3,9 @@ export interface Playgroup {
   name?: string;
   players?: string[];
 }
+
+export const emptyPlaygroup: Playgroup = {
+  name: 'Playgroup',
+  players: []
+};
+

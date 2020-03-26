@@ -4,6 +4,7 @@ import {User} from '../models/user.model';
 import {Playgroup} from '../models/playgroup.model';
 import {AuthService} from './auth.service';
 import {first} from 'rxjs/operators';
+import {config} from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +17,17 @@ export class PlaygroupService {
   ) { }
 
   async getPlaygroup(uid: string): Promise<Playgroup> {
-    return this.afs.doc<Playgroup>(`playgroups/${uid}`).valueChanges().pipe(first()).toPromise();
+    return this.afs.doc<Playgroup>(`${config.firebaseRoutes.playGroups}/${uid}`).valueChanges().pipe(first()).toPromise();
   }
 
-  async join(uid: string) {
+  async join(uid: string, pgUid: string) {
     const userData: User = this.auth.user;
-    const playgroupData = await this.getPlaygroup('odGw2W0b6DtnFYoUaqJM');
+    const playgroupData = await this.getPlaygroup(pgUid);
 
     if (userData.playgroups === undefined) {
-      userData.playgroups = ['odGw2W0b6DtnFYoUaqJM'];
-    } else if (userData.playgroups.indexOf('odGw2W0b6DtnFYoUaqJM') === -1) {
-      userData.playgroups.push('odGw2W0b6DtnFYoUaqJM');
+      userData.playgroups = [pgUid];
+    } else if (userData.playgroups.indexOf(pgUid) === -1) {
+      userData.playgroups.push(pgUid);
     }
     if (playgroupData.players === undefined) {
       playgroupData.players = [uid];
@@ -34,20 +35,20 @@ export class PlaygroupService {
       playgroupData.players.push(uid);
     }
 
-    await this.updateData('odGw2W0b6DtnFYoUaqJM', playgroupData);
+    await this.updateData(pgUid, playgroupData);
 
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`${config.firebaseRoutes.players}/${uid}`);
     return userRef.set(userData, {merge: true});
   }
 
   async create(playgroup: Playgroup) {
     console.log(playgroup);
-    const playgroupRef: AngularFirestoreCollection<Playgroup> = this.afs.collection(`playgroups`);
+    const playgroupRef: AngularFirestoreCollection<Playgroup> = this.afs.collection(`${config.firebaseRoutes.playGroups}`);
     return playgroupRef.add(playgroup);
   }
 
   async updateData(uid: string, newPlaygroupData?: Playgroup): Promise<any> {
-    const userRef: AngularFirestoreDocument<Playgroup> = this.afs.doc(`playgroups/${uid}`);
+    const userRef: AngularFirestoreDocument<Playgroup> = this.afs.doc(`${config.firebaseRoutes.playGroups}/${uid}`);
     return userRef.set(newPlaygroupData, {merge: true});
   }
 }

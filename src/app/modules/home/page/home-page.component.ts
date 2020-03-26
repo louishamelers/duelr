@@ -4,6 +4,7 @@ import {AuthService} from '../../../core/services/auth.service';
 import {PlaygroupService} from '../../../core/services/playgroup.service';
 import {ChatService} from '../../../core/services/chat.service';
 import {socialRoutesNames} from '../../social/social.routes.names';
+import {emptyPlaygroup} from '../../../core/models/playgroup.model';
 
 @Component({
   selector: 'app-page',
@@ -20,15 +21,19 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  go() {
+  register() {
     this.router.navigate(['/user/register']);
   }
 
-  do() {
-    this.router.navigate([socialRoutesNames.ROOT, '9dF62rqNfFp53QybONDk']);
+  chat() {
+    this.router.navigate([socialRoutesNames.ROOT, 'iq4DXjZmNoplvLFJFPh7']);
   }
 
-  tan() {
+  createChat() {
     this.cs.create();
   }
+
+  createPlaygroup() {
+    this.playgroupService.create(emptyPlaygroup);
+}
 }

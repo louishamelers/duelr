@@ -15,6 +15,5 @@ export interface Chat {
 export const emptyChat: Chat = {
   createdAt: Date.now(),
   chatName: '',
-  memberColors: [],
   messages: [],
 };

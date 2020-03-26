@@ -8,8 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import * as firebase from 'firebase';
-import {PlaygroupService} from './playgroup.service';
+import {config} from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,7 @@ export class AuthService {
     this.user$ = afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc<User>(`${config.firebaseRoutes.players}/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
@@ -70,20 +69,20 @@ export class AuthService {
 
   checkPlayerName(playerName: string): AngularFirestoreDocument {
     playerName = playerName.toLowerCase();
-    return this.afs.doc(`playernames/${playerName}`);
+    return this.afs.doc(`${config.firebaseRoutes.playerNames}/${playerName}`);
   }
 
   async setPlayerName(playerName: string): Promise<any> {
     if (this.user.playerName !== undefined) {
-      await this.afs.doc(`/playernames/${this.user.playerName}`).delete();
+      await this.afs.doc(`/${config.firebaseRoutes.playerNames}/${this.user.playerName}`).delete();
     }
-    await this.afs.doc(`/playernames/${playerName}`).set({uid: this.user.uid});
+    await this.afs.doc(`/${config.firebaseRoutes.playerNames}/${playerName}`).set({uid: this.user.uid});
     return this.updateUserData(this.user.uid, {playerName});
   }
 
   // user info management
   private updateUserData(uid: string, newUserData?: User): Promise<any> {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`${config.firebaseRoutes.players}/${uid}`);
     newUserData.uid = uid;
     return userRef.set(newUserData, {merge: true});
   }
