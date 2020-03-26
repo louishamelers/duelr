@@ -16,8 +16,9 @@
   app-login {
     background-color: red;
 
-    .thing {
-      background-color: mat-color($primary, default);
+    .wrapper {
+      background-color: mat-color($background, background);
+      color: mat-color($foreground, text);
     }
   }
 }

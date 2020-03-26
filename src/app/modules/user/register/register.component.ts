@@ -85,10 +85,10 @@ export class RegisterComponent implements OnInit {
 
   emailRegister() {
     this.working = true;
+    this.fireError = '';
     const email = this.registerForm.get('email').value;
     const password = this.registerForm.get('password').value;
     this.auth.emailRegister(email, password).then(res => {
-      console.log(res);
       this.afterRegister();
     },
       err => {

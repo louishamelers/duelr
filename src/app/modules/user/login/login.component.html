@@ -1,12 +1,38 @@
-<header>
-  <div>
-    <div>
-      <img src="../../../../assets/images/logo.png" alt="logo">
-    </div>
+<div class="wrapper">
+  <div class="header-logo">
+    <img src="assets/images/duelr-icon.svg"  alt="Logo">
     <h1>Duelr</h1>
   </div>
-</header>
-<p>{{error}}</p>
-<input type="text" [(ngModel)]="email" placeholder="email">
-<input type="text" [(ngModel)]="password" placeholder="email">
-<button (click)="login()">Login</button>
+  <form [formGroup]="registerForm" (ngSubmit)="login()">
+    <h2>Login</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+             placeholder="pat@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Enter a valid email please
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input [type]="hide ? 'password' : 'text'" matInput [formControl]="passwordControl" [errorStateMatcher]="matcher"
+             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="passwordControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="fireError" class="fire-error">
+      {{fireError}}
+    </mat-error>
+    <div class="submit-button-container">
+      <button mat-raised-button color="primary" [disabled]="registerForm.invalid || working" type="submit">Register</button>
+      <div *ngIf="working">
+        <mat-progress-spinner mode="indeterminate" color="primary" [diameter]="24"></mat-progress-spinner>
+      </div>
+    </div>
+  </form>
+</div>

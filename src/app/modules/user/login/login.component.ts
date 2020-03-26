@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../core/services/auth.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MyErrorStateMatcher} from '../register/register.component';
+import {userRoutesNames} from '../user.routes.names';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +12,27 @@ import {AuthService} from '../../../core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  working = false;
-  error = '';
-  email = '';
-  password = '';
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
 
-  constructor(public auth: AuthService) {
+  passwordControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  registerForm = new FormGroup({
+    email: this.emailFormControl,
+    password: this.passwordControl
+  });
+
+  matcher = new MyErrorStateMatcher();
+  fireError = '';
+  working = false;
+  hide = true;
+
+  constructor(public auth: AuthService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -21,11 +40,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.working = true;
-    this.auth.emailLogin(this.email, this.password).then(res => {
-        console.log(res);
+    this.fireError = '';
+    const email = this.registerForm.get('email').value;
+    const password = this.registerForm.get('password').value;
+    this.auth.emailLogin(email, password).then(res => {
+        this.working = false;
+        this.router.navigate(['/']);
       },
       err => {
-        this.error = err.message;
+        this.fireError = err.message;
         this.working = false;
       });
   }
