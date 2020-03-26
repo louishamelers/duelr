@@ -1,35 +1,45 @@
 <div class="wrapper">
-  <header class="mat-elevation-z3">
-    <mat-toolbar>
-      Lekker
-    </mat-toolbar>
-  </header>
-  <div class="chat-wrapper" #chatScroll>
-    <div class="chat" *ngIf="chat$ | async as chat">
-      <div class="msg-wrapper" *ngFor="let msg of chat.messages; trackBy: trackByCreated; let i = index" [class.mine]="msg.uid == auth.user.uid">
-        <mat-card class="msg" [class.new-message]="i == 0 || msg.uid != chat.messages[i -1].uid">
-          <div
-            class="noselect player-name"
-            [style]="msg.user?.style">
-            {{msg.user?.playerName}}
-          </div>
-          <div class="msg-content">
-            <p class="message">{{ msg.content }}</p>
-          </div>
-          <p class="noselect date-hint">{{msg.createdAt | date: 'shortTime'}}</p>
-        </mat-card>
+  <div *ngIf="chat$ | async as chat; else noChat">
+    <header class="mat-elevation-z3">
+      <mat-toolbar>
+        {{chat.chatName}}
+      </mat-toolbar>
+    </header>
+    <div class="chat-wrapper" #chatScroll>
+      <div class="chat" >
+        <div class="msg-wrapper" *ngFor="let msg of chat.messages; trackBy: trackByCreated; let i = index" [class.mine]="msg.uid == auth.user.uid">
+          <mat-card class="msg" [class.new-message]="i == 0 || msg.uid != chat.messages[i -1].uid">
+            <div
+              class="noselect player-name"
+              [style]="msg.user?.style">
+              {{msg.user?.playerName}}
+            </div>
+            <div class="msg-content">
+              <p class="message">{{ msg.content }}</p>
+            </div>
+            <p class="noselect date-hint">{{msg.createdAt | date: 'shortTime'}}</p>
+          </mat-card>
+        </div>
       </div>
     </div>
+    <footer>
+      <div class="input-wrapper">
+        <input [(ngModel)]="newMsg" (keydown.enter)="submit()" placeholder="Say something whack...">
+        <button (click)="submit()" mat-icon-button aria-label="send">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </footer>
   </div>
-  <footer>
-    <div class="input-wrapper">
-      <input [(ngModel)]="newMsg" (keydown.enter)="submit()" placeholder="Say something whack...">
-      <button (click)="submit()" mat-icon-button aria-label="send">
-        <mat-icon>send</mat-icon>
-      </button>
-    </div>
-  </footer>
 </div>
 
+<ng-template #noChat>
+  <div class="no-chat">
+    <div class="no-chat-content">
+      <mat-progress-spinner mode="indeterminate" color="primary" [diameter]="24"></mat-progress-spinner>
+      <p>There is no chat here...</p>
+    </div>
+  </div>
+</ng-template>
 
 

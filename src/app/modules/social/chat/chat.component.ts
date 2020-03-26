@@ -27,10 +27,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.chatId = this.route.snapshot.paramMap.get('chatId');
     const source = this.cs.get(this.chatId);
     this.chat$ = this.cs.joinUsers(source);
-
-    this.chat$.subscribe(next => {
-      console.log(next);
-    });
   }
 
   ngAfterViewInit(): void {
