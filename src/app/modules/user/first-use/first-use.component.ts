@@ -35,12 +35,9 @@ export class FirstUseComponent implements OnInit {
   }
 
   submitData() {
-    this.auth.setPlayerName(this.playerName).then(res => {
-        this.router.navigate([socialRoutesNames.ROOT]);
-    },
-      err => {
-        console.log(err.message);
-      });
+    this.auth.setPlayerName(this.playerName).then(() =>
+      this.router.navigate([socialRoutesNames.ROOT])
+    );
   }
 
 }

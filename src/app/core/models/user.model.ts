@@ -4,3 +4,8 @@ export interface User {
   playerName?: string;
   playgroups?: string[];
 }
+
+export const emptyUser: User = {
+  playerName: null,
+  playgroups: []
+};

@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from 'src/app/core/models/user.model';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {emptyUser, User} from 'src/app/core/models/user.model';
 
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {auth} from 'firebase/app';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 import {config} from '../config';
 
 @Injectable({
@@ -37,18 +37,18 @@ export class AuthService {
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user.uid, {email: credential.user.email});
+    return this.updateUserData(credential.user.uid, {...emptyUser, email: credential.user.email});
   }
 
   async facebookSignIn() {
     const provider = new auth.FacebookAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user.uid, {email: credential.user.email});
+    return this.updateUserData(credential.user.uid, {...emptyUser, email: credential.user.email});
   }
 
   async emailRegister(email: string, password: string): Promise<any> {
     const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-    return this.updateUserData(credential.user.uid, {email: credential.user.email});
+    return this.updateUserData(credential.user.uid, {...emptyUser, email: credential.user.email});
   }
 
   async emailLogin(email: string, password: string): Promise<any> {
@@ -68,12 +68,10 @@ export class AuthService {
   // playerName management
 
   checkPlayerName(playerName: string): AngularFirestoreDocument {
-    playerName = playerName.toLowerCase();
     return this.afs.doc(`${config.firebaseRoutes.playerNames}/${playerName}`);
   }
 
   async setPlayerName(playerName: string): Promise<any> {
-    playerName = playerName.toLowerCase();
     if (this.user.playerName !== undefined) {
       await this.afs.doc(`/${config.firebaseRoutes.playerNames}/${this.user.playerName}`).delete();
     }
@@ -82,9 +80,10 @@ export class AuthService {
   }
 
   // user info management
-  private updateUserData(uid: string, newUserData?: User): Promise<any> {
+  private updateUserData(uid: string, userData?: User): Promise<any> {
+    console.log(userData);
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`${config.firebaseRoutes.players}/${uid}`);
-    newUserData.uid = uid;
-    return userRef.set(newUserData, {merge: true});
+    userData.uid = uid;
+    return userRef.set(userData, {merge: true});
   }
 }
