@@ -73,6 +73,7 @@ export class AuthService {
   }
 
   async setPlayerName(playerName: string): Promise<any> {
+    playerName = playerName.toLowerCase();
     if (this.user.playerName !== undefined) {
       await this.afs.doc(`/${config.firebaseRoutes.playerNames}/${this.user.playerName}`).delete();
     }

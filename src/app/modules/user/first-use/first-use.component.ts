@@ -27,6 +27,7 @@ export class FirstUseComponent implements OnInit {
     if (this.playerName !== '') {
       this.working = true;
       this.auth.checkPlayerName(this.playerName).valueChanges().subscribe(next => {
+        console.log(next);
         this.valid = next === undefined;
         this.working = false;
       });
@@ -35,9 +36,7 @@ export class FirstUseComponent implements OnInit {
 
   submitData() {
     this.auth.setPlayerName(this.playerName).then(res => {
-        this.playgroupService.join(this.auth.user.uid, 'ekfGDq4bJyqq8YyKLHJX').then(lekker => {
-          this.router.navigate([socialRoutesNames.ROOT]);
-        });
+        this.router.navigate([socialRoutesNames.ROOT]);
     },
       err => {
         console.log(err.message);
