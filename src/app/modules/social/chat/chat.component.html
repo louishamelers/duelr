@@ -2,7 +2,13 @@
   <div *ngIf="chat$ | async as chat; else noChat">
     <header class="mat-elevation-z3">
       <mat-toolbar>
-        {{chat.chatName}}
+        <button mat-icon-button aria-label="back to chats" routerLink=".."
+          (click)="$event.stopPropagation()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="chat-info noselect" matRipple [routerLink]="['..', socialRoutesNames]">
+          {{chat.chatName}}
+        </div>
       </mat-toolbar>
     </header>
     <div class="chat-wrapper" #chatScroll>

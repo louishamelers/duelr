@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Observable, timer} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {AuthService} from '../../../core/services/auth.service';
+import {socialRoutesNames} from '../social.routes.names';
 
 @Component({
   selector: 'app-chat',
@@ -13,6 +14,7 @@ import {AuthService} from '../../../core/services/auth.service';
 export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('chatScroll') chatScroll: ElementRef;
 
+  socialRoutesNames = socialRoutesNames;
   chatId: string;
   chat$: Observable<any>;
   newMsg: string;

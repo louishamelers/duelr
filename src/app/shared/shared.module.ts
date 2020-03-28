@@ -11,6 +11,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatRippleModule} from '@angular/material/core';
 
 
 
@@ -30,7 +31,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatRippleModule
   ]
 })
 export class SharedModule { }
