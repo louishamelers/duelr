@@ -1,4 +1,5 @@
 export const socialRoutesNames = {
   ROOT: 'social',
-  OVERVIEW: ''
+  OVERVIEW: '',
+  PLAYGROUP: 'playgroup'
 };

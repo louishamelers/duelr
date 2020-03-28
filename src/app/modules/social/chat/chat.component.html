@@ -6,7 +6,7 @@
           (click)="$event.stopPropagation()">
           <mat-icon>arrow_back</mat-icon>
         </button>
-        <div class="chat-info noselect" matRipple [routerLink]="['..', socialRoutesNames]">
+        <div class="chat-info noselect" matRipple (click)="gotoInfo()">
           {{chat.chatName}}
         </div>
       </mat-toolbar>

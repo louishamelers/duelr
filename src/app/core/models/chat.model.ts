@@ -1,3 +1,8 @@
+export enum Type {
+  SINGLE,
+  GROUP
+}
+
 export interface Message {
   uid?: string;
   content?: string;
@@ -6,14 +11,19 @@ export interface Message {
 
 export interface Chat {
   id?: string;
+  type?: Type;
+  info?: string;
   createdAt?: number;
   chatName?: string;
-  memberColors?: {id: string, color: string}[];
+  members?: [];
   messages?: Message[];
 }
 
 export const emptyChat: Chat = {
   createdAt: Date.now(),
+  type: Type.GROUP,
+  info: '',
   chatName: '',
+  members: [],
   messages: [],
 };

@@ -1,10 +1,11 @@
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ChatService} from '../../../core/services/chat.service';
-import {ActivatedRoute} from '@angular/router';
-import {Observable, timer} from 'rxjs';
-import {first} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import {AuthService} from '../../../core/services/auth.service';
 import {socialRoutesNames} from '../social.routes.names';
+import {Type} from '../../../core/models/chat.model';
+import {userRoutesNames} from '../../user/user.routes.names';
 
 @Component({
   selector: 'app-chat',
@@ -22,6 +23,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   constructor(
     public cs: ChatService,
     private route: ActivatedRoute,
+    private router: Router,
     public auth: AuthService
   ) { }
 
@@ -32,7 +34,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.chat$.subscribe(next => {
+    this.chat$.subscribe(_ => {
       this.scrollToBottom();
     });
   }
@@ -43,6 +45,16 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
     this.cs.sendMessage(this.chatId, this.newMsg);
     this.newMsg = '';
+  }
+
+  gotoInfo() {
+    this.cs.get(this.chatId).subscribe(chat => {
+      if (chat.type === Type.GROUP) {
+        this.router.navigate(['../', socialRoutesNames.PLAYGROUP, chat.info], {relativeTo: this.route});
+      } else if (chat.type === Type.SINGLE) {
+        console.log(chat.info);
+      }
+    });
   }
 
   trackByCreated(i, msg) {
