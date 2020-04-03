@@ -16,6 +16,7 @@
 @import "app/modules/user/first-use/first-use.scss-theme";
 @import "app/modules/social/chat/chat.component.scss-theme";
 @import "src/app/modules/dev/colors/colors.component.scss-theme";
+@import "src/app/modules/social/playgroup/playgroup.component.scss-theme";
 
 // add component mixins here
 @mixin custom-components-theme($theme) {
@@ -25,6 +26,7 @@
   @include first-use-component-theme($theme);
   @include chat-component-theme($theme);
   @include colors-component-theme($theme);
+  @include playgroup-component-theme($theme);
 }
 
 // specify theme class eg: <body class="my-theme"> ... </body>
