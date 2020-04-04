@@ -6,6 +6,7 @@ import {AuthService} from '../../../core/services/auth.service';
 import {socialRoutesNames} from '../social.routes.names';
 import {Type} from '../../../core/models/chat.model';
 import {userRoutesNames} from '../../user/user.routes.names';
+import {ScryfallService} from '../../../core/services/scryfall.service';
 
 @Component({
   selector: 'app-chat',
@@ -24,7 +25,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     public cs: ChatService,
     private route: ActivatedRoute,
     private router: Router,
-    public auth: AuthService
+    public auth: AuthService,
+    private scryfallService: ScryfallService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +47,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
     this.cs.sendMessage(this.chatId, this.newMsg);
     this.newMsg = '';
+  }
+
+  updateText() {
+    const match = this.newMsg.match('#([^#]+)');
+    if (match) {
+      this.scryfallService.findCards(match[1]).subscribe(result => console.log(result));
+    }
   }
 
   gotoInfo() {
