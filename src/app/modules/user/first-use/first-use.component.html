@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <div class="header-logo">
+    <img src="assets/images/duelr-icon.svg"  alt="Logo">
+    <h1>Duelr</h1>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Player name</mat-label>
+    <input matInput placeholder="EijsdeLvr043" [(ngModel)]="playerName" (keyup)="checkPlayerName()">
+  </mat-form-field>
+  <div  class="availability-helper">
+    <div *ngIf="playerName != ''">
+      <div *ngIf="!valid && !working">
+        <p><strong>@{{playerName}}</strong> is already in use</p>
+      </div>
+      <div *ngIf="valid && !working">
+        <p><strong>@{{playerName}}</strong> is available</p>
+      </div>
+      <div *ngIf="working">
+        <p><strong>@{{playerName}}</strong> is...</p>
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="!valid" (click)="submitData()">Continue</button>
+</div>

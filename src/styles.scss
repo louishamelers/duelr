@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+// always include only once per project
+@include mat-core();
+
+// import our custom theme
+@import './assets/theme/theme';
+
+// import component themes
+@import "app/shared/components/wrapper/wrapper.component.scss-theme";
+@import "app/modules/user/login/login.component.scss-theme";
+@import "app/modules/user/register/register.component.scss-theme";
+@import "app/modules/user/first-use/first-use.scss-theme";
+@import "app/modules/social/chat/chat.component.scss-theme";
+@import "src/app/modules/dev/colors/colors.component.scss-theme";
+@import "src/app/modules/social/playgroup/playgroup.component.scss-theme";
+
+// add component mixins here
+@mixin custom-components-theme($theme) {
+  @include wrapper-component-theme($theme);
+  @include login-component-theme($theme);
+  @include register-component-theme($theme);
+  @include first-use-component-theme($theme);
+  @include chat-component-theme($theme);
+  @include colors-component-theme($theme);
+  @include playgroup-component-theme($theme);
+}
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.my-theme {
+
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($my-theme);
+
+  // include custom components
+  @include custom-components-theme($my-theme)
+}
+
+.my-theme-contrast {
+
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($my-theme-contrast);
+
+  // include custom components
+  @include custom-components-theme($my-theme-contrast)
+}
+
+html, body { height: 100%; overscroll-behavior-y: contain}
+body { margin: 0; font-family: 'Raleway', "Helvetica Neue", sans-serif; }

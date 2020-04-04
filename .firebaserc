@@ -1,0 +1,15 @@
+{
+  "targets": {
+    "duelr-9306d": {
+      "hosting": {
+        "duelr": [
+          "duelr-9306d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "angular": "duelr-9306d",
+    "default": "duelr-9306d"
+  }
+}
