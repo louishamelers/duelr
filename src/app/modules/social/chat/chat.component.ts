@@ -15,11 +15,13 @@ import {ScryfallService} from '../../../core/services/scryfall.service';
 })
 export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('chatScroll') chatScroll: ElementRef;
+  @ViewChild('inputField') inputField: HTMLInputElement;
 
   socialRoutesNames = socialRoutesNames;
   chatId: string;
   chat$: Observable<any>;
   newMsg: string;
+  cardAutofill: string[];
 
   constructor(
     public cs: ChatService,
@@ -49,10 +51,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.newMsg = '';
   }
 
-  updateText() {
-    const match = this.newMsg.match('#([^#]+)');
+  updateText(element: HTMLInputElement) {
+    const match = this.newMsg.match('#[A-Za-z]+');
     if (match) {
-      this.scryfallService.findCards(match[1]).subscribe(result => console.log(result));
+      console.log(match);
+      this.scryfallService.findCards(match[1]).subscribe(result => this.cardAutofill = result);
     }
   }
 
