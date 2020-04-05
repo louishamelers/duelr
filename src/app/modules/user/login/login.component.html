@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="header-logo">
     <img src="assets/images/duelr-icon.svg"  alt="Logo">
-    <h1>Duelr</h1>
+    <h1>Legion</h1>
   </div>
   <form [formGroup]="registerForm" (ngSubmit)="login()">
     <h2>Login</h2>
@@ -35,4 +35,5 @@
       </div>
     </div>
   </form>
+  <p class="register-ref">Don't have an account? <strong [routerLink]="'../register'">Register here</strong></p>
 </div>

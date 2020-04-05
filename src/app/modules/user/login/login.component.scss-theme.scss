@@ -20,5 +20,9 @@
       background-color: mat-color($background, background);
       color: mat-color($foreground, text);
     }
+
+    .register-ref {
+      color: mat-color($foreground, hint-text);
+    }
   }
 }
