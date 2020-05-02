@@ -29,12 +29,14 @@ export class ChatComponent implements OnInit, AfterViewInit {
     private router: Router,
     public auth: AuthService,
     private scryfallService: ScryfallService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.chatId = this.route.snapshot.paramMap.get('chatId');
     const source = this.cs.get(this.chatId);
     this.chat$ = this.cs.joinUsers(source);
+    this.chat$.subscribe(_ => this.updateChatTimestamp());
   }
 
   ngAfterViewInit(): void {
@@ -52,7 +54,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   updateText(element: HTMLInputElement) {
-    const match = this.newMsg.match('#[A-Za-z]+');
+    const match = this.newMsg.match('#[A-Za-z]+'); // todo een error komt hieruit
     if (match) {
       console.log(match);
       this.scryfallService.findCards(match[1]).subscribe(result => this.cardAutofill = result);
@@ -75,5 +77,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   private scrollToBottom() {
     this.chatScroll.nativeElement.scrollTop = this.chatScroll.nativeElement.scrollHeight + 100;
+  }
+
+  private updateChatTimestamp() {
+    const timeStamps = this.cs.chatActiveTimeStamps;
+    timeStamps.set(this.chatId, Date.now());
+    this.cs.chatActiveTimeStamps = timeStamps;
   }
 }

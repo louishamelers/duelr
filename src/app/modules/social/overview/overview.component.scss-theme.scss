@@ -15,6 +15,11 @@
   app-overview {
 
 
+    .unread {
+      color: mat-color($primary, default) !important;
+      font-weight: bold;
+    }
+
     .wrapper {
       background-color: mat-color($background, background);
       color: mat-color($foreground, text);

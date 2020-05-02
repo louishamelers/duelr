@@ -15,7 +15,7 @@
           <p class="name"><strong>{{chat.chatName}}</strong></p>
           <p class="timestamp">{{chat.messages[chat.messages.length - 1].createdAt | timeAgo}}</p>
         </div>
-        <p class="last-message">{{chat.messages[chat.messages.length-1].user.playerName}}: {{chat.messages[chat.messages.length - 1].content}}</p>
+        <p class="last-message" [class.unread]="!chat.read">{{chat.messages[chat.messages.length-1].user.playerName}}: {{chat.messages[chat.messages.length - 1].content}}</p>
       </div>
     </div>
   </div>

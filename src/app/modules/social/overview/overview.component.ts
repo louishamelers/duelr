@@ -20,14 +20,18 @@ export class OverviewComponent implements OnInit {
       switchMap(chatIds => {
         const chatSources: Observable<any>[] = chatIds.map(chatId => {
           const chatSource = this.cs.get(chatId).pipe(
-            map(chat => ({chatId, ...chat})));
+            map(chat => {
+              let read = false;
+              if (chat.messages[chat.messages.length - 1].createdAt < this.cs.chatActiveTimeStamps.get(chatId)) {
+                read = true;
+              }
+              return {chatId, read, ...chat};
+            }));
           return this.cs.joinUsers(chatSource);
         });
 
         return chatSources.length ? combineLatest(chatSources) : of([]);
       }));
-
-    this.chats$.subscribe(chats => console.log(chats));
   }
 
 }
