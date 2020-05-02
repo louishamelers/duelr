@@ -3,6 +3,7 @@ import {CanActivate, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from '../services/auth.service';
 import {map, take, tap} from 'rxjs/operators';
+import {userRoutesNames} from '../../modules/user/user.routes.names';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,7 @@ export class AuthGuard implements CanActivate {
       map(user => !!user),
       tap(loggedIn => {
         if (!loggedIn) {
-          console.log('Access denied');
-          this.router.navigate(['/login']);
+          this.router.navigate([userRoutesNames.ROOT]);
         }
       })
     );

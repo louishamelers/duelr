@@ -15,7 +15,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private router: Router,
               private cs: ChatService,
-              private auth: AuthService,
+              public auth: AuthService,
               private playgroupService: PlaygroupService) { }
 
   ngOnInit(): void {
