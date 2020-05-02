@@ -21,11 +21,16 @@ export class OverviewComponent implements OnInit {
         const chatSources: Observable<any>[] = chatIds.map(chatId => {
           const chatSource = this.cs.get(chatId).pipe(
             map(chat => {
-              let read = false;
-              if (chat.messages[chat.messages.length - 1].createdAt < this.cs.chatActiveTimeStamps.get(chatId)) {
-                read = true;
+              let unread = 0;
+              const lastTime = this.cs.chatActiveTimeStamps.get(chatId);
+
+              while (chat.messages[chat.messages.length - 1].createdAt < lastTime) {
+                unread++;
               }
-              return {chatId, read, ...chat};
+
+              //todo
+
+              return {chatId, unread, ...chat};
             }));
           return this.cs.joinUsers(chatSource);
         });

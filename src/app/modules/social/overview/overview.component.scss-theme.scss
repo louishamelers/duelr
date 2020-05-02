@@ -38,12 +38,15 @@
 
       }
 
+      .timestamp {
+        color: mat-color($foreground, hint-text);
+      }
+
       .last-message {
         color: mat-color($foreground, secondary-text);
       }
-
-      .timestamp {
-        color: mat-color($foreground, hint-text);
+      .missed-count {
+        background-color: mat-color($primary, default);
       }
     }
 

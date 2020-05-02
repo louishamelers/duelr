@@ -44,7 +44,7 @@
     flex-direction: column;
     flex-grow: 1;
 
-    .chat-preview-header {
+    >div {
       display: flex;
       flex-direction: row;
     }
@@ -57,16 +57,26 @@
     flex-grow: 1;
   }
 
+  .timestamp {
+    float: right;
+    font-size: 10pt;
+  }
+
   .last-message {
     overflow: hidden;
     height: 1.2em;
     display: -webkit-box;
     -webkit-line-clamp: 1; // amount of line you want
     -webkit-box-orient: vertical;
+    flex-grow: 1;
   }
 
-  .timestamp {
-    float: right;
+  .missed-count {
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
     font-size: 10pt;
+    text-align: center;
   }
 }

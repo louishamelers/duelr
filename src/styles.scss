@@ -2,6 +2,7 @@
 
 @import '~@angular/material/theming';
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 // always include only once per project
 @include mat-core();
@@ -62,6 +63,9 @@ html, body {
 
 body {
   margin: 0;
-  font-family: 'Raleway', "Helvetica Neue", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+  font-family: 'Raleway', "Helvetica Neue", sans-serif;
+}
