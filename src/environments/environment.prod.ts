@@ -9,5 +9,8 @@ export const environment = {
     messagingSenderId: '22826497018',
     appId: '1:22826497018:web:5e22f59c2d817c78a66a43',
     measurementId: 'G-3NHGWPFYNS'
+  },
+  scryfallConfig: {
+    base: 'https://api.scryfall.com/'
   }
 };
