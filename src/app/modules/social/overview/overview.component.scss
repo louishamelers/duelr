@@ -1,0 +1,60 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+}
+
+.chat-preview {
+  padding: 14px;
+  border-top: solid 1px;
+  display: flex;
+  flex-direction: row;
+
+  &:last-of-type {
+    border-bottom: solid 1px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .image {
+    width: 52px;
+    height: auto;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+    }
+  }
+
+  .body {
+    margin-left: 14px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .name {
+    font-size: 14pt;
+    margin-bottom: 4px;
+  }
+
+  .last-message {
+  }
+
+  .timestamp {
+    float: right;
+    font-size: 10pt;
+  }
+}

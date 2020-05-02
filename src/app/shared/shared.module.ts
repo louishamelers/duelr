@@ -12,11 +12,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatRippleModule} from '@angular/material/core';
+import {TimeAgoExtendsPipe} from '../core/pipes/timeAgeExtends.pipe';
 
 
 
 @NgModule({
-  declarations: [NotFoundComponent, WrapperComponent],
+  declarations: [NotFoundComponent, WrapperComponent, TimeAgoExtendsPipe],
   imports: [
     CommonModule
   ],
@@ -32,7 +33,8 @@ import {MatRippleModule} from '@angular/material/core';
     MatInputModule,
     MatCardModule,
     MatToolbarModule,
-    MatRippleModule
+    MatRippleModule,
+    TimeAgoExtendsPipe
   ]
 })
 export class SharedModule { }

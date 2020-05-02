@@ -99,7 +99,7 @@ export class ChatService {
     );
   }
 
-  myChats(): Observable<string[]> {
+  myChats(): Observable<string[]> { // only gets chats from playgroups right now
     return this.auth.user$.pipe(
       switchMap( user => {
         const uids = Array.from(new Set(user.playgroups.map((message: string) => message)));

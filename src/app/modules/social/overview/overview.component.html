@@ -1,4 +1,23 @@
-<p>overview works!</p>
-<div *ngFor="let id of chatIds">
-  <button mat-button [routerLink]="id">{{id}}</button>
+<div class="wrapper">
+  <div class="header">
+    <h3>Chats</h3>
+  </div>
+  <div *ngIf="chats$ | async as chats; else NoChats">
+    <div *ngFor="let chat of chats"
+         class="chat-preview"
+         matRipple
+         [routerLink]="chat.chatId">
+      <div class="image">
+        <img src="assets/images/placeholders/group-image.jpg" alt="chat-image">
+      </div>
+      <div class="body">
+        <p class="name"><strong>{{chat.chatName}}</strong></p>
+        <p class="last-message">{{chat.messages[chat.messages.length - 1].content}}</p>
+      </div>
+      <p class="timestamp">{{chat.messages[chat.messages.length - 1].createdAt | timeAgo}}</p>
+    </div>
+  </div>
 </div>
+<ng-template #NoChats>
+  you have no chats yet...
+</ng-template>
