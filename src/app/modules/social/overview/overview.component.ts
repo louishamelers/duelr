@@ -24,11 +24,10 @@ export class OverviewComponent implements OnInit {
               let unread = 0;
               const lastTime = this.cs.chatActiveTimeStamps.get(chatId);
 
-              while (chat.messages[chat.messages.length - 1].createdAt < lastTime) {
+              while (chat.messages[chat.messages.length - (1 + unread)] !== undefined &&
+                chat.messages[chat.messages.length - (1 + unread)].createdAt > lastTime) {
                 unread++;
               }
-
-              //todo
 
               return {chatId, unread, ...chat};
             }));
