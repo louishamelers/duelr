@@ -3,10 +3,33 @@
     <h3>Chats</h3>
   </div>
   <div class="notification">
-    <mat-icon matSuffix >settings_input_antenna</mat-icon>
+    <button mat-icon-button aria-label="Example icon-button with a heart icon" class="close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-icon matSuffix >public</mat-icon>
     <div class="message">
-      <h3>Heads up!</h3>
-      <p>You are now online, part of the global Magic: The gathering community!</p>
+      <p class="title">Heads up!</p>
+      <p class="text">You are now online, part of the global Magic: The gathering community!</p>
+    </div>
+  </div>
+  <div class="notification warning">
+    <button mat-icon-button aria-label="Example icon-button with a heart icon" class="close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-icon matSuffix >notification_important</mat-icon>
+    <div class="message">
+      <p class="title">Hey you!</p>
+      <p class="text">Yeah you, turn on you notification!</p>
+    </div>
+  </div>
+  <div class="notification success">
+    <button mat-icon-button aria-label="Example icon-button with a heart icon" class="close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-icon matSuffix >verified_user</mat-icon>
+    <div class="message">
+      <p class="title">Wonderful!</p>
+      <p class="text">Your account has been verified!</p>
     </div>
   </div>
   <div *ngIf="chats$ | async as chats; else NoChats">
