@@ -2,6 +2,13 @@
   <div class="header">
     <h3>Chats</h3>
   </div>
+  <div class="notification">
+    <mat-icon matSuffix >settings_input_antenna</mat-icon>
+    <div class="message">
+      <h3>Heads up!</h3>
+      <p>You are now online, part of the global Magic: The gathering community!</p>
+    </div>
+  </div>
   <div *ngIf="chats$ | async as chats; else NoChats">
     <div *ngFor="let chat of chats"
          class="chat-preview"
