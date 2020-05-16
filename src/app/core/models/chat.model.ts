@@ -15,13 +15,22 @@ export interface Chat {
   info?: string;
   createdAt?: number;
   chatName?: string;
-  members?: [];
+  members?: string[];
   messages?: Message[];
 }
 
-export const emptyChat: Chat = {
+export const emptyGroupChat: Chat = {
   createdAt: Date.now(),
   type: Type.GROUP,
+  info: '',
+  chatName: '',
+  members: [],
+  messages: [],
+};
+
+export const emptyChat: Chat = {
+  createdAt: Date.now(),
+  type: Type.SINGLE,
   info: '',
   chatName: '',
   members: [],

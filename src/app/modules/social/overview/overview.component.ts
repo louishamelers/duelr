@@ -3,6 +3,7 @@ import {ChatService} from '../../../core/services/chat.service';
 import {combineLatest, Observable, of} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {socialRoutesNames} from '../social.routes.names';
+import {Type} from '../../../core/models/chat.model';
 
 @Component({
   selector: 'app-overview',
@@ -23,6 +24,9 @@ export class OverviewComponent implements OnInit {
         const chatSources: Observable<any>[] = chatIds.map(chatId => {
           const chatSource = this.cs.get(chatId).pipe(
             map(chat => {
+              if (chat.type === Type.SINGLE) {
+                chat.chatName = 'conversation';
+              }
               let unread = 0;
               const lastTime = this.cs.chatActiveTimeStamps.get(chatId);
 

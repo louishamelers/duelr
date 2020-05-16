@@ -18,12 +18,12 @@
       </div>
       <div class="body">
         <div>
-          <p class="name">{{chat.chatName}}</p>
-          <p class="timestamp" [class.unread]="chat.unread >= 1">{{chat.messages[chat.messages.length - 1].createdAt | timeAgo}}</p>
+          <p class="name noselect">{{chat.chatName}}</p>
+          <p class="timestamp noselect" [class.unread]="chat.unread >= 1">{{chat.messages[chat.messages.length - 1].createdAt | timeAgo}}</p>
         </div>
         <div>
-          <p class="last-message" >{{chat.messages[chat.messages.length-1].user.playerName}}: {{chat.messages[chat.messages.length - 1].content}}</p>
-          <p class="missed-count" *ngIf="chat.unread >= 1">{{chat.unread}}</p>
+          <p class="last-message noselect" >{{chat.messages[chat.messages.length-1].user.playerName}}: {{chat.messages[chat.messages.length - 1].content}}</p>
+          <p class="missed-count noselect" *ngIf="chat.unread >= 1">{{chat.unread}}</p>
         </div>
       </div>
     </div>
