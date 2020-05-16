@@ -28,10 +28,10 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     RouterModule.forRoot(ROUTES),
     BrowserModule,
-    AppRoutingModule,
-    FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
+    AppRoutingModule,
+    FlexLayoutModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     HttpClientModule,
