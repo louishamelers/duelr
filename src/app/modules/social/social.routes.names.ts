@@ -1,5 +1,6 @@
 export const socialRoutesNames = {
-  ROOT: 'social',
+  ROOT: 'chat',
   OVERVIEW: '',
-  PLAYGROUP: 'playgroup'
+  PLAYGROUP: 'playgroup',
+  CREATE_CHAT: 'new'
 };

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../../core/services/chat.service';
 import {combineLatest, Observable, of} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
+import {socialRoutesNames} from '../social.routes.names';
 
 @Component({
   selector: 'app-overview',
@@ -10,6 +11,7 @@ import {map, switchMap} from 'rxjs/operators';
 })
 export class OverviewComponent implements OnInit {
 
+  socialRoutes = socialRoutesNames;
   chats$: Observable<any[]>;
 
   constructor(private cs: ChatService) {
@@ -37,5 +39,7 @@ export class OverviewComponent implements OnInit {
         return chatSources.length ? combineLatest(chatSources) : of([]);
       }));
   }
+
+
 
 }
