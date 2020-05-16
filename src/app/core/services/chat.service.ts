@@ -6,7 +6,7 @@ import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {socialRoutesNames} from '../../modules/social/social.routes.names';
 import {firestore} from 'firebase';
-import {Chat, emptyChat, emptyGroupChat, Message} from '../models/chat.model';
+import {Chat, emptyChat, emptyGroupChat, Message, Type} from '../models/chat.model';
 import {User} from '../models/user.model';
 import {config} from '../config';
 import {Playgroup} from '../models/playgroup.model';
@@ -32,10 +32,27 @@ export class ChatService {
   }
 
   get(chatId): Observable<Chat> {
+    let chat;
     return this.afs
       .collection(config.firebaseRoutes.chats)
       .doc<Chat>(chatId)
-      .valueChanges();
+      .valueChanges()
+      .pipe(
+        switchMap(c => {
+          // Unique User ID
+          chat = c;
+          const uid = c.members.filter(x => x !== this.auth.user.uid).pop();
+
+          // get firestore doc
+          return this.afs.doc<User>(`${config.firebaseRoutes.players}/${uid}`).valueChanges();
+        }),
+        map(userDoc => {
+          if (userDoc !== undefined) {
+            chat.chatName = userDoc.playerName;
+          }
+          return chat;
+        })
+      );
   }
 
   get chatActiveTimeStamps(): Map<string, number> {

@@ -12,6 +12,7 @@ import {Type} from '../../../core/models/chat.model';
 })
 export class OverviewComponent implements OnInit {
 
+  chatTypes = Type;
   socialRoutes = socialRoutesNames;
   chats$: Observable<any[]>;
 
@@ -24,9 +25,6 @@ export class OverviewComponent implements OnInit {
         const chatSources: Observable<any>[] = chatIds.map(chatId => {
           const chatSource = this.cs.get(chatId).pipe(
             map(chat => {
-              if (chat.type === Type.SINGLE) {
-                chat.chatName = 'conversation';
-              }
               let unread = 0;
               const lastTime = this.cs.chatActiveTimeStamps.get(chatId);
 
