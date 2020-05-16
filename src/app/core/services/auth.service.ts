@@ -6,9 +6,11 @@ import {auth} from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 
-import {Observable, of} from 'rxjs';
+import {combineLatest, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {config} from '../config';
+import {BannerService} from './banner.service';
+import {emailVerified} from '../../../assets/resources/banners';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) {
+    private router: Router,
+    private bannerService: BannerService) {
     this.user$ = afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -28,6 +31,18 @@ export class AuthService {
         }
       })
     );
+    combineLatest(this.afAuth.authState, this.user$).subscribe(([afUser, afsUser]) => {
+      if (afUser.emailVerified && !afsUser.notifications.includes('emailVerified')) {
+        this.bannerService.addBanner({
+          ...emailVerified,
+          onClose: () => {
+            console.log(afsUser);
+            afsUser.notifications.push('emailVerified');
+            this.updateUserData(afUser.uid, afsUser);
+          }
+        });
+      }
+    });
     this.user$.subscribe(next => this.user = next);
   }
 
@@ -63,6 +78,10 @@ export class AuthService {
   async signOut() {
     await this.afAuth.auth.signOut();
     this.router.navigate(['/']);
+  }
+
+  sendVerificationEmail() {
+    return this.afAuth.auth.currentUser.sendEmailVerification();
   }
 
   // playerName management

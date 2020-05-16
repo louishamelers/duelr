@@ -3,9 +3,11 @@ export interface User {
   email?: string;
   playerName?: string;
   playgroups?: string[];
+  notifications?: string[];
 }
 
 export const emptyUser: User = {
   playerName: null,
-  playgroups: []
+  playgroups: [],
+  notifications: [],
 };

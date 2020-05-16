@@ -6,6 +6,7 @@ export interface Banner {
   title: string;
   text: string;
   icon?: string;
+  onClose?: () => void;
 }
 
 @Injectable({
@@ -43,7 +44,8 @@ export class BannerService {
     this.banners$.next(this.banners);
   }
 
-  closeBanner(index: number) {
+  closeBanner(banner: Banner, index: number) {
+    banner?.onClose();
     this.banners.splice(index, 1);
     this.banners$.next(this.banners);
   }
