@@ -18,7 +18,7 @@ export class BannerService {
   constructor() {
   }
 
-  private banners$: BehaviorSubject<Banner[]> = new BehaviorSubject<Banner[]>(undefined);
+  private banners$: BehaviorSubject<Banner[]> = new BehaviorSubject<Banner[]>([]);
   private banners: Banner[] = [];
 
   get _banners() {

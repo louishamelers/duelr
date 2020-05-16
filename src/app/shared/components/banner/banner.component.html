@@ -1,6 +1,10 @@
 <div *ngIf="bannerService._banners | async as banners">
-  <div *ngFor="let banner of banners; let i = index" class="notification" [class]="banner.type" (click)="banner.onClick(i)">
-    <button mat-icon-button aria-label="Example icon-button with a heart icon" class="close" (click)="bannerService.closeBanner(banner, i)">
+  <div *ngFor="let banner of banners; let i = index"
+       class="notification"
+       [class.closing]="closing[i]"
+       [class]="banner.type"
+       (click)="banner.onClick(i)">
+    <button mat-icon-button aria-label="Example icon-button with a heart icon" class="close" (click)="close(banner, i)">
       <mat-icon>close</mat-icon>
     </button>
     <mat-icon matSuffix >{{banner.icon}}</mat-icon>

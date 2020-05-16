@@ -4,6 +4,7 @@ $information-opacity: 0.55;
 
 .notification {
   width: calc(100% - (14 * 2));
+  max-height: 100px;
   margin: 14px;
   padding: 14px 0 14px 0;
   border-radius: 8px;
@@ -59,7 +60,42 @@ $information-opacity: 0.55;
     background-color: rgba(0, 255, 0, $background-opacity);
   }
 
-  //&.outline {
-  //  background-color: rgba(0,0,0,0);
-  //}
+  &.closing {
+    animation-name: shrink;
+    animation-delay: .3s;
+    animation-duration: .35s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+
+    >.mat-icon, .close, .message {
+      animation-name: fade;
+      animation-delay: .1s;
+      animation-duration: .2s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @keyframes shrink {
+    60% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      max-height: 0;
+      padding: 0;
+    }
+  }
+
+  @keyframes fade{
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
 }

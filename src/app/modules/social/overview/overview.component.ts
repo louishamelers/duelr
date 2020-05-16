@@ -4,6 +4,7 @@ import {combineLatest, Observable, of} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {socialRoutesNames} from '../social.routes.names';
 import {Type} from '../../../core/models/chat.model';
+import {BannerService} from '../../../core/services/banner.service';
 
 @Component({
   selector: 'app-overview',
@@ -16,10 +17,17 @@ export class OverviewComponent implements OnInit {
   socialRoutes = socialRoutesNames;
   chats$: Observable<any[]>;
 
-  constructor(private cs: ChatService) {
+  constructor(private cs: ChatService,
+              private bannerService: BannerService) {
   }
 
   ngOnInit(): void {
+    this.bannerService.addBanner({
+      type: 'info',
+      title: 'Some information',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est orci, auctor quis mattis a.',
+      onClick: index => console.log('todo...')
+    });
     this.chats$ = this.cs.myChats().pipe(
       switchMap(chatIds => {
         const chatSources: Observable<any>[] = chatIds.map(chatId => {
