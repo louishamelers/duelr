@@ -13,13 +13,16 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatRippleModule} from '@angular/material/core';
 import {TimeAgoExtendsPipe} from '../core/pipes/timeAgeExtends.pipe';
+import { BannerComponent } from './components/banner/banner.component';
 
 
 
 @NgModule({
-  declarations: [NotFoundComponent, WrapperComponent, TimeAgoExtendsPipe],
+  declarations: [NotFoundComponent, WrapperComponent, TimeAgoExtendsPipe, BannerComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [
     MatButtonModule,
@@ -34,7 +37,8 @@ import {TimeAgoExtendsPipe} from '../core/pipes/timeAgeExtends.pipe';
     MatCardModule,
     MatToolbarModule,
     MatRippleModule,
-    TimeAgoExtendsPipe
+    TimeAgoExtendsPipe,
+    BannerComponent
   ]
 })
 export class SharedModule { }

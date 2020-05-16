@@ -42,7 +42,6 @@ export class PlaygroupService {
   }
 
   async create(playgroup: Playgroup) {
-    console.log(playgroup);
     const playgroupRef: AngularFirestoreCollection<Playgroup> = this.afs.collection(`${config.firebaseRoutes.playGroups}`);
     return playgroupRef.add(playgroup);
   }

@@ -10,7 +10,6 @@ import {Chat, emptyChat, Message} from '../models/chat.model';
 import {User} from '../models/user.model';
 import {config} from '../config';
 import {Playgroup} from '../models/playgroup.model';
-import {group} from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
