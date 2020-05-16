@@ -10,7 +10,7 @@ import {combineLatest, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {config} from '../config';
 import {BannerService} from './banner.service';
-import {emailVerified} from '../../../assets/resources/banners';
+import {emailSent, emailVerified, verifyEmail} from '../../../assets/resources/banners';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +36,20 @@ export class AuthService {
         this.bannerService.addBanner({
           ...emailVerified,
           onClose: () => {
-            console.log(afsUser);
             afsUser.notifications.push('emailVerified');
             this.updateUserData(afUser.uid, afsUser);
+          }
+        });
+      } else if (!afUser.emailVerified) {
+        this.bannerService.addBanner({
+          ...verifyEmail,
+          onClick: (index) => {
+            this.afAuth.auth.currentUser.sendEmailVerification().then(_ => {
+              const bannerContent = Object.assign({}, emailSent);
+              bannerContent.text += afUser.email;
+              this.bannerService.addBanner(bannerContent);
+            });
+            this.bannerService.closeBanner(undefined, index);
           }
         });
       }
@@ -78,10 +89,6 @@ export class AuthService {
   async signOut() {
     await this.afAuth.auth.signOut();
     this.router.navigate(['/']);
-  }
-
-  sendVerificationEmail() {
-    return this.afAuth.auth.currentUser.sendEmailVerification();
   }
 
   // playerName management
