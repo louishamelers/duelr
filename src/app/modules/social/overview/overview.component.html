@@ -1,16 +1,15 @@
-<div class="new-chat-button-container">
-  <button mat-fab color="primary" aria-label="New chat" [routerLink]="socialRoutes.CREATE_CHAT">
-    <mat-icon>create</mat-icon>
-  </button>
-</div>
 <div class="wrapper">
   <div class="header">
     <div class="search">
       Search
     </div>
   </div>
-  <div style="width: calc(100%); border-bottom: solid 1px rgba(255, 255, 255, 0.1); margin-bottom: 8px"></div>
   <app-banner></app-banner>
+  <div class="new-chat-button-container">
+    <button mat-raised-button color="primary" aria-label="New chat" [routerLink]="socialRoutes.CREATE_CHAT">
+      + New chat
+    </button>
+  </div>
   <div *ngIf="chats$ | async as chats; else NoChats">
     <div *ngFor="let chat of chats"
          class="chat-preview"
