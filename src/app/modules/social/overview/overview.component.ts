@@ -25,7 +25,7 @@ export class OverviewComponent implements OnInit {
     this.bannerService.addBanner({
       type: 'info',
       title: 'Some information',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est orci, auctor quis mattis a.',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est orci, auctor quis mattis.',
       onClick: index => console.log('todo...')
     });
     this.chats$ = this.cs.myChats().pipe(

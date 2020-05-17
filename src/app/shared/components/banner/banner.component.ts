@@ -17,7 +17,7 @@ export class BannerComponent {
 
   close(banner: Banner, index: number) {
     this.closing[index] = true;
-    new Promise(resolve => setTimeout(resolve, 2000)).then(x => {
+    new Promise(resolve => setTimeout(resolve, 650)).then(x => {
       this.bannerService.closeBanner(banner, index);
       this.closing[index] = undefined;
     });

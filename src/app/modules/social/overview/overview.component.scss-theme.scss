@@ -25,18 +25,11 @@
       color: mat-color($foreground, text);
     }
 
+    .header .search {
+      color: mat-color($foreground, secondary-text);
+    }
+
     .chat-preview {
-      border-color: mat-color($background, hover);
-      &:last-of-type {
-        border-color: mat-color($background, hover);
-      }
-
-      .image {
-      }
-
-      .name {
-
-      }
 
       .timestamp {
         color: mat-color($foreground, hint-text);
