@@ -22,12 +22,12 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bannerService.addBanner({
-      type: 'info',
-      title: 'Some information',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est orci, auctor quis mattis.',
-      onClick: index => console.log('todo...')
-    });
+    // this.bannerService.addBanner({
+    //   type: 'info',
+    //   title: 'Some information',
+    //   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est orci, auctor quis mattis.',
+    //   onClick: index => console.log('todo...')
+    // });
     this.chats$ = this.cs.myChats().pipe(
       switchMap(chatIds => {
         const chatSources: Observable<any>[] = chatIds.map(chatId => {
