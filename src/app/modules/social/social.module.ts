@@ -6,11 +6,12 @@ import {SOCIAL_ROUTES} from './social.routes';
 import { OverviewComponent } from './overview/overview.component';
 import {SharedModule} from '../../shared/shared.module';
 import { PlaygroupComponent } from './playgroup/playgroup.component';
+import { CreateChatComponent } from './create-chat/create-chat.component';
 
 
 
 @NgModule({
-  declarations: [ChatComponent, OverviewComponent, PlaygroupComponent],
+  declarations: [ChatComponent, OverviewComponent, PlaygroupComponent, CreateChatComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(SOCIAL_ROUTES),

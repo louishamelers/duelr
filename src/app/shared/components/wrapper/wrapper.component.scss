@@ -15,6 +15,5 @@ nav {
 main {
   height: calc(100% - #{$navigation-height});
   width: 100%;
-  overflow: scroll;
-  overflow-x: hidden;
+  overflow-y: scroll;
 }

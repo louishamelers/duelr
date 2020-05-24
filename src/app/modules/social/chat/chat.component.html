@@ -29,8 +29,20 @@
       </div>
     </div>
     <footer>
+
       <div class="input-wrapper">
-        <input [(ngModel)]="newMsg" (keydown.enter)="submit()" placeholder="Say something whack...">
+        <div class="autocomplete">
+          <div *ngFor="let card of cardAutofill">
+            {{card}}
+          </div>
+        </div>
+        <input
+          type="text"
+          #inputField
+          [(ngModel)]="newMsg"
+          (keydown.enter)="submit()"
+          (keyup)="updateText(inputField)"
+          placeholder="Say something whack...">
         <button (click)="submit()" mat-icon-button aria-label="send">
           <mat-icon>send</mat-icon>
         </button>

@@ -2,6 +2,7 @@
 
 @import '~@angular/material/theming';
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 // always include only once per project
 @include mat-core();
@@ -17,6 +18,8 @@
 @import "app/modules/social/chat/chat.component.scss-theme";
 @import "src/app/modules/dev/colors/colors.component.scss-theme";
 @import "src/app/modules/social/playgroup/playgroup.component.scss-theme";
+@import "src/app/modules/social/overview/overview.component.scss-theme";
+@import "src/app/modules/social/create-chat/create-chat.component.scss-theme";
 
 // add component mixins here
 @mixin custom-components-theme($theme) {
@@ -25,6 +28,8 @@
   @include register-component-theme($theme);
   @include first-use-component-theme($theme);
   @include chat-component-theme($theme);
+  @include create-chat-component-theme($theme);
+  @include overview-component-theme($theme);
   @include colors-component-theme($theme);
   @include playgroup-component-theme($theme);
 }
@@ -48,5 +53,31 @@
   @include custom-components-theme($my-theme-contrast)
 }
 
-html, body { height: 100%; overscroll-behavior-y: contain}
-body { margin: 0; font-family: 'Raleway', "Helvetica Neue", sans-serif; }
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+  outline: none !important;
+}
+
+html, body {
+  height: 100%;
+  overscroll-behavior-y: contain
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-family: 'Raleway', "Helvetica Neue", sans-serif;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}

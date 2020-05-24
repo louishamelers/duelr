@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+
+// mixin name will be used in main style.scss
+@mixin overview-component-theme($theme) {
+
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  // all of these variables contain many additional variables
+  app-overview {
+
+
+    .unread {
+      color: mat-color($primary, default) !important;
+      font-weight: bold;
+    }
+
+    .wrapper {
+      background-color: mat-color($background, background);
+      color: mat-color($foreground, text);
+    }
+
+    .header .search {
+      color: mat-color($foreground, secondary-text);
+    }
+
+    .chat-preview {
+
+      .timestamp {
+        color: mat-color($foreground, hint-text);
+      }
+
+      .last-message {
+        color: mat-color($foreground, secondary-text);
+      }
+      .missed-count {
+        background-color: mat-color($primary, default);
+      }
+    }
+
+  }
+}

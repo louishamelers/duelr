@@ -19,6 +19,7 @@ import {ROUTES} from './app.routes';
 import {HomeModule} from './modules/home/home.module';
 import {SocialModule} from './modules/social/social.module';
 import {DevModule} from './modules/dev/dev.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import {DevModule} from './modules/dev/dev.module';
   imports: [
     RouterModule.forRoot(ROUTES),
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
     AppRoutingModule,
     FlexLayoutModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatInputModule,
     UserModule,
     HomeModule,

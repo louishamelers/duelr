@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
 
   private afterRegister() {
     this.working = false;
-    this.router.navigate([userRoutesNames.ROOT, userRoutesNames.FIRSTUSE]);
+    this.router.navigate([userRoutesNames.ROOT, userRoutesNames.FIRST_USE]);
   }
 
 }

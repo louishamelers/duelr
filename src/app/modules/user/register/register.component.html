@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="header-logo">
     <img src="assets/images/duelr-icon.svg"  alt="Logo">
-    <h1>Duelr</h1>
+    <h1>Legion</h1>
   </div>
   <div class="sign-up-buttons-container">
     <button mat-raised-button class="google-button" (click)="googleRegister()">
@@ -20,7 +20,7 @@
     <h2>Create account</h2>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+      <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
              placeholder="pat@example.com">
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Enter a valid email please

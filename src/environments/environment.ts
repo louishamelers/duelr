@@ -13,6 +13,9 @@ export const environment = {
     messagingSenderId: '434326310539',
     appId: '1:434326310539:web:71f9fb2d4a5087bd720e8e',
     measurementId: 'G-0Y7FNYGW9R'
+  },
+  scryfallConfig: {
+    base: 'https://api.scryfall.com/'
   }
 };
 
